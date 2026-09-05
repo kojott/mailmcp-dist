@@ -2,6 +2,9 @@
 
 ## 0.3.0
 
+- Redesign every page in the Modernist design system from the owner's Claude Design canvas
+- Setup form: Czech providers (Seznam.cz, Volný.cz) only in the Czech UI
+- CLAUDE.md: every production update must also rebuild and push the dist repo
 - Sign-in page CSP allows the client's redirect origin (Allow access did nothing in browsers); company deployment = 2 h online onboarding
 - Prebuilt distribution repo: scripts/build-dist.mjs, buyer-facing links point to kojott/mailmcp-dist
 - Self-hosted copies stay a storefront for the vendor; Personal runs token mode with a per-token cap
@@ -14,6 +17,3 @@
 - Security hardening after five-area audit (v0.2.1)
 - Attachments as one-hour download links (/files), edit-password documentation everywhere
 - Setup page: all placeholders follow the selected language
-- Attachment download on by default (setup page and schema)
-- Setup page redesign: bilingual CZ/EN, provider presets incl. Volný.cz, only e-mail + password required, advanced options collapsed
-- Editing a token requires an edit password: /api/unseal no longer yields mailbox passwords to a token holder alone
