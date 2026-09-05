@@ -2,6 +2,8 @@
 
 ## 0.3.0
 
+- Sign-in page CSP allows the client's redirect origin (Allow access did nothing in browsers); company deployment = 2 h online onboarding
+- Prebuilt distribution repo: scripts/build-dist.mjs, buyer-facing links point to kojott/mailmcp-dist
 - Self-hosted copies stay a storefront for the vendor; Personal runs token mode with a per-token cap
 - Claim page enabled whenever the signing key is present (variant ids optional, name fallback)
 - Lemon Squeezy integration: /claim exchanges LS keys for mailmcp keys (activate/validate), license_key_created webhook with HMAC check and optional e-mail delivery, setup guide, env wiring
@@ -15,5 +17,3 @@
 - Attachment download on by default (setup page and schema)
 - Setup page redesign: bilingual CZ/EN, provider presets incl. Volný.cz, only e-mail + password required, advanced options collapsed
 - Editing a token requires an edit password: /api/unseal no longer yields mailbox passwords to a token holder alone
-- Edit an existing token: /api/unseal returns the blob key to the token holder, setup page prefills from a token
-- Bilingual 3-minute start wizard at /start (CZ/EN), master key generator, Deploy to Vercel button
