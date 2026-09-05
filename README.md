@@ -1,42 +1,42 @@
 # mailmcp 0.3.0
 
-Vlastní pošta v ChatGPT, Claude a dalších MCP klientech: Gmail, Seznam.cz, Volný.cz, iCloud, Fastmail, Yahoo, Zoho i libovolný IMAP/SMTP. Hesla ke schránkám se šifrují v prohlížeči uživatele a server si nic neukládá.
+Your mail in ChatGPT, Claude and other MCP clients: Gmail, Outlook, iCloud, Fastmail, Yahoo, Zoho, Seznam.cz, Volný.cz and any IMAP/SMTP server. Mailbox passwords are encrypted in the user's browser and the server stores nothing.
 
-Toto je **předpřipravená distribuce** (minifikované soubory v `dist/`). Zdrojový kód je k dispozici na vyžádání zákazníkům. Provoz vyžaduje licenční klíč: **https://mailmcp.ai/pricing** (Personal €4,99, Unlimited €129, jednorázově, vrácení peněz do 60 dnů).
+This is the **prebuilt distribution** (minified files in `dist/`). The source code is available to customers on request. Running it requires a licence key: **https://mailmcp.ai/pricing** (Personal €4.99, Unlimited €129, one-time, 60-day refund).
 
-## Nasazení na Vercel (na klik)
+## Deploy to Vercel (one click)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkojott%2Fmailmcp-dist&env=MAILMCP_KEY,MAILMCP_LICENSE&envDescription=MAILMCP_KEY%3A%2032%20random%20bytes%20base64url.%20MAILMCP_LICENSE%3A%20your%20license%20key.&project-name=mailmcp&repository-name=mailmcp)
 
-1. `MAILMCP_KEY`: 32 náhodných bajtů base64url, např. `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"` (nebo generátor na `/start`).
-2. `MAILMCP_LICENSE`: klíč `mml1.…` z nákupu (výměna klíče Lemon Squeezy na https://mailmcp.ai/claim).
-3. Po nasazení otevřete `https://<projekt>.vercel.app/start` a postupujte podle průvodce. Uživatelé si tokeny vytvářejí na `/setup`.
+1. `MAILMCP_KEY`: 32 random bytes as base64url, e.g. `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"` (or the generator on `/start`).
+2. `MAILMCP_LICENSE`: the `mml1.…` key from your purchase (exchange the Lemon Squeezy key at https://mailmcp.ai/claim).
+3. After deployment open `https://<project>.vercel.app/start` and follow the guide. Users create their tokens on `/setup`.
 
-Změna `MAILMCP_KEY` zneplatní všechny tokeny.
+Changing `MAILMCP_KEY` invalidates every token.
 
-## Docker / vlastní server
+## Docker / your own server
 
 ```bash
 docker build -t mailmcp .
-docker run -d -p 8080:8080 -e MAILMCP_KEY=… -e MAILMCP_LICENSE=… -e MAILMCP_PUBLIC_URL=https://mail.firma.cz mailmcp
+docker run -d -p 8080:8080 -e MAILMCP_KEY=… -e MAILMCP_LICENSE=… -e MAILMCP_PUBLIC_URL=https://mail.example.com mailmcp
 ```
 
-Bez Dockeru: Node 22+, `node dist/node.js` se stejnými proměnnými. Za reverzní proxy nastavte `MAILMCP_PUBLIC_URL` (nebo `MAILMCP_TRUST_PROXY=1`).
+Without Docker: Node 22+, `node dist/node.js` with the same variables. Behind a reverse proxy set `MAILMCP_PUBLIC_URL` (or `MAILMCP_TRUST_PROXY=1`).
 
 ## Claude Desktop
 
-Stáhněte `mailmcp.mcpb` z [Releases](https://github.com/kojott/mailmcp-dist/releases/latest), otevřete v Claude Desktop, vyplňte konfiguraci ze `/setup` (režim Claude Desktop) a licenční klíč.
+Download `mailmcp.mcpb` from [Releases](https://github.com/kojott/mailmcp-dist/releases/latest), open it in Claude Desktop, paste the configuration from `/setup` (Claude Desktop mode) and the licence key.
 
-## Volitelné proměnné
+## Optional variables
 
-Viz `.env.example`: `MAILMCP_INVITE_CODE` (uzavřená registrace tokenů), `MAILMCP_CONFIG` (schránky provozovatele, jednouživatelský režim), `MAILMCP_PUBLIC_URL`.
+See `.env.example`: `MAILMCP_INVITE_CODE` (closed token registration), `MAILMCP_CONFIG` (the operator's own mailboxes, single-owner mode), `MAILMCP_PUBLIC_URL`, `MAILMCP_VIDEO_URL` (install video on the home page).
 
-## Aktualizace
+## Updates
 
-Nová verze = nový tag v tomto repozitáři. Na Vercelu: v projektu nastavte tento repozitář jako upstream (`git remote add upstream https://github.com/kojott/mailmcp-dist && git pull upstream main && git push`) nebo klikněte Deploy znovu. Docker: `git pull && docker build`. Aktualizace jsou v ceně do verze 1.0.
+A new version = a new tag in this repository. On Vercel: add this repository as upstream (`git remote add upstream https://github.com/kojott/mailmcp-dist && git pull upstream main && git push`) or click Deploy again. Docker: `git pull && docker build`. Updates are included up to version 1.0.
 
-## Dokumentace a podpora
+## Documentation and support
 
-- Průvodce: `/start` na vašem serveru, příručka `/docs`, návod pro AI asistenty `/llms.txt`
-- Podpora: https://jiridolejs.cz/kontakt
-- Licence: `LICENSE` (EULA, česky a anglicky). Nejde o open source; šíření a provoz bez klíče smlouva zakazuje.
+- Guide: `/start` on your server, the detailed guide at `/docs`, instructions for AI assistants at `/llms.txt`
+- Support: https://jiridolejs.cz/kontakt
+- Licence: `LICENSE` (EULA; English translation first, the Czech original governs). Not open source: redistribution and running without a key are prohibited.

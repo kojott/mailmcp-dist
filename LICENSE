@@ -1,14 +1,86 @@
-mailmcp — LICENČNÍ SMLOUVA S KONCOVÝM UŽIVATELEM (EULA)
-mailmcp — END USER LICENSE AGREEMENT
+mailmcp — END USER LICENSE AGREEMENT (EULA)
+mailmcp — LICENČNÍ SMLOUVA S KONCOVÝM UŽIVATELEM
 
-Verze 1.0, 5. 9. 2026. Česká verze je rozhodná; anglický text níže je překlad.
-Version 1.0, 5 September 2026. The Czech text governs; the English text below is a translation.
+Version 1.0, 5 September 2026.
+Author: Jiří Dolejš, https://jiridolejs.cz (the "Author")
 
-Autor / Author: Jiří Dolejš, https://jiridolejs.cz (dále „Autor“ / "the Author")
+This agreement is issued by a Czech company. The legally binding text is the
+CZECH ORIGINAL, which follows below the English translation. The English text
+is provided for convenience; where the two differ, the Czech original governs.
 
 ──────────────────────────────────────────────────────────────────────────
-ČESKY
+ENGLISH (translation; the Czech original below governs)
 ──────────────────────────────────────────────────────────────────────────
+
+The mailmcp software (the "Software"), including its source code, is the
+Author's copyrighted work. It is distributed as a prebuilt package; on
+request the Author makes the source code available to customers for
+inspection, review and modification for their own installation. THIS IS NOT
+OPEN SOURCE. By installing or using the Software you accept this agreement.
+
+1. Grant of license
+   Upon payment of the license fee the Author grants you a non-exclusive,
+   non-transferable license to install and run the Software within the tier
+   purchased:
+   a) Personal: one running installation (one server or one device) for one
+      natural person, at most 5 mailboxes in the configuration or in each
+      user token.
+   b) Unlimited: one running installation in shared-server mode for an
+      unlimited number of users and mailboxes within one organization, team
+      or course; commercial use inside the organization is permitted.
+   Each additional running installation requires an additional license. A
+   license may be moved to another installation at any time as long as you
+   never have more running installations than licenses.
+
+2. License key
+   The Software requires a license key issued by the Author. The key is
+   verified locally; the Software does not contact the Author. The key is
+   confidential; do not publish or share it beyond the installation it was
+   issued for.
+
+3. What you may do
+   You may modify the Software for your own installation and you may read
+   and audit the source code.
+
+4. What you may not do
+   You may not a) run the Software without a valid key or beyond the tier
+   purchased, b) remove, bypass or disable the license verification,
+   c) distribute, sell, rent, sublicense or publish the Software or works
+   derived from it, d) offer the Software to third parties as a service
+   (hosting, SaaS) outside your own organization without a separate
+   agreement with the Author, e) remove copyright notices.
+
+5. Updates
+   Updates are included up to the next major version (e.g. 0.x → 1.0). A
+   major upgrade may carry a fee; you may keep using older releases.
+
+6. Refunds
+   Within 60 days of purchase the Author refunds the full price on request;
+   the license then ends and you must stop using the Software.
+
+7. Warranty and liability
+   The Software is provided "as is", without warranty. The Author is not
+   liable for lost profit, lost data or indirect damages; the Author's total
+   liability is limited to the fees you paid for the license in the most
+   recent twelve months. The Software operates on your mail accounts; you
+   are responsible for passwords, permissions and the content of messages
+   sent.
+
+8. Termination
+   The license ends upon breach; you must uninstall and stop using the
+   Software. Sections 4, 7 and 9 survive termination.
+
+9. Governing law
+   This agreement is governed by the laws of the Czech Republic; disputes go
+   to the courts competent for the Author's seat. Consumers keep the rights
+   granted by Czech and EU law, which this agreement does not limit.
+
+──────────────────────────────────────────────────────────────────────────
+ČESKY (rozhodný originál)
+──────────────────────────────────────────────────────────────────────────
+
+Verze 1.0, 5. 9. 2026. Česká verze je rozhodná; anglický text výše je překlad.
+Autor: Jiří Dolejš, https://jiridolejs.cz (dále „Autor“)
 
 Software mailmcp (dále „Software“) včetně zdrojového kódu je dílem Autora a je
 chráněn autorským právem. Šíří se jako předpřipravená distribuce; zdrojový
@@ -69,71 +141,3 @@ Softwaru přijímáte tuto smlouvu.
    Smlouva se řídí právem České republiky. Spory řeší soudy příslušné podle
    sídla Autora. Spotřebitelé mají práva podle českého a evropského práva,
    která tato smlouva neomezuje.
-
-──────────────────────────────────────────────────────────────────────────
-ENGLISH (translation)
-──────────────────────────────────────────────────────────────────────────
-
-The mailmcp software (the "Software"), including its source code, is the
-Author's copyrighted work. It is distributed as a prebuilt package; on
-request the Author makes the source code available to customers for
-inspection, review and modification for their own installation. THIS IS NOT
-OPEN SOURCE. By
-installing or using the Software you accept this agreement.
-
-1. Grant of license
-   Upon payment of the license fee the Author grants you a non-exclusive,
-   non-transferable license to install and run the Software within the tier
-   purchased:
-   a) Personal: one running installation (one server or one device) for one
-      natural person, at most 5 mailboxes in the configuration or in each
-      user token.
-   b) Unlimited: one running installation in shared-server mode for an
-      unlimited number of users and mailboxes within one organization, team
-      or course; commercial use inside the organization is permitted.
-   Each additional running installation requires an additional license. A
-   license may be moved to another installation at any time as long as you
-   never have more running installations than licenses.
-
-2. License key
-   The Software requires a license key issued by the Author. The key is
-   verified locally; the Software does not contact the Author. The key is
-   confidential; do not publish or share it beyond the installation it was
-   issued for.
-
-3. What you may do
-   You may modify the Software for your own installation and you may read
-   and audit the source code.
-
-4. What you may not do
-   You may not a) run the Software without a valid key or beyond the tier
-   purchased, b) remove, bypass or disable the license verification,
-   c) distribute, sell, rent, sublicense or publish the Software or works
-   derived from it, d) offer the Software to third parties as a service
-   (hosting, SaaS) outside your own organization without a separate
-   agreement with the Author, e) remove copyright notices.
-
-5. Updates
-   Updates are included up to the next major version (e.g. 0.x → 1.0). A
-   major upgrade may carry a fee; you may keep using older releases.
-
-6. Refunds
-   Within 60 days of purchase the Author refunds the full price on request;
-   the license then ends and you must stop using the Software.
-
-7. Warranty and liability
-   The Software is provided "as is", without warranty. The Author is not
-   liable for lost profit, lost data or indirect damages; the Author's total
-   liability is limited to the fees you paid for the license in the most
-   recent twelve months. The Software operates on your mail accounts; you
-   are responsible for passwords, permissions and the content of messages
-   sent.
-
-8. Termination
-   The license ends upon breach; you must uninstall and stop using the
-   Software. Sections 4, 7 and 9 survive termination.
-
-9. Governing law
-   This agreement is governed by the laws of the Czech Republic; disputes go
-   to the courts competent for the Author's seat. Consumers keep the rights
-   granted by Czech and EU law, which this agreement does not limit.
