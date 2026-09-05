@@ -11,8 +11,9 @@ Autor / Author: Jiří Dolejš, https://jiridolejs.cz (dále „Autor“ / "the 
 ──────────────────────────────────────────────────────────────────────────
 
 Software mailmcp (dále „Software“) včetně zdrojového kódu je dílem Autora a je
-chráněn autorským právem. Zdrojový kód je zveřejněn k nahlédnutí, prověření a
-úpravám pro vlastní potřebu; NEJEDNÁ SE O OPEN SOURCE. Instalací nebo použitím
+chráněn autorským právem. Šíří se jako předpřipravená distribuce; zdrojový
+kód Autor zákazníkům na vyžádání zpřístupní k nahlédnutí, prověření a úpravám
+pro vlastní instalaci. NEJEDNÁ SE O OPEN SOURCE. Instalací nebo použitím
 Softwaru přijímáte tuto smlouvu.
 
 1. Udělení licence
@@ -74,8 +75,10 @@ ENGLISH (translation)
 ──────────────────────────────────────────────────────────────────────────
 
 The mailmcp software (the "Software"), including its source code, is the
-Author's copyrighted work. The source code is published for inspection,
-review and modification for your own use; THIS IS NOT OPEN SOURCE. By
+Author's copyrighted work. It is distributed as a prebuilt package; on
+request the Author makes the source code available to customers for
+inspection, review and modification for their own installation. THIS IS NOT
+OPEN SOURCE. By
 installing or using the Software you accept this agreement.
 
 1. Grant of license
