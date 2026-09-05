@@ -1,0 +1,22 @@
+{
+  "name": "mailmcp",
+  "version": "0.3.0",
+  "description": "Self-hosted multi-account email MCP server (Gmail, Seznam, iCloud, any IMAP/SMTP). Your data never leaves your own accounts.",
+  "private": true,
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "bin": {
+    "mailmcp": "dist/stdio.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node -e \"process.exit(0)\"",
+    "start": "node dist/node.js",
+    "setup-token": "node dist/cli.js"
+  },
+  "dependencies": {
+    "hono": "^4.13.5"
+  }
+}
