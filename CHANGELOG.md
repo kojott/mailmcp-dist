@@ -2,6 +2,7 @@
 
 ## 0.3.0
 
+- Canonical domain mailmcp.ai: vendor URL, docs, dist README; old host redirects web pages, keeps MCP/OAuth
 - Redesign every page in the Modernist design system from the owner's Claude Design canvas
 - Setup form: Czech providers (Seznam.cz, Volný.cz) only in the Czech UI
 - CLAUDE.md: every production update must also rebuild and push the dist repo
@@ -16,4 +17,3 @@
 - Access tokens 30 days (ChatGPT does not refresh proactively), AGPL-3.0 license, /llms.txt guidance for AI assistants, robots.txt, design working files
 - Security hardening after five-area audit (v0.2.1)
 - Attachments as one-hour download links (/files), edit-password documentation everywhere
-- Setup page: all placeholders follow the selected language

@@ -2,14 +2,14 @@
 
 Vlastní pošta v ChatGPT, Claude a dalších MCP klientech: Gmail, Seznam.cz, Volný.cz, iCloud, Fastmail, Yahoo, Zoho i libovolný IMAP/SMTP. Hesla ke schránkám se šifrují v prohlížeči uživatele a server si nic neukládá.
 
-Toto je **předpřipravená distribuce** (minifikované soubory v `dist/`). Zdrojový kód je k dispozici na vyžádání zákazníkům. Provoz vyžaduje licenční klíč: **https://mailmcp-three.vercel.app/pricing** (Personal €4,99, Unlimited €129, jednorázově, vrácení peněz do 60 dnů).
+Toto je **předpřipravená distribuce** (minifikované soubory v `dist/`). Zdrojový kód je k dispozici na vyžádání zákazníkům. Provoz vyžaduje licenční klíč: **https://mailmcp.ai/pricing** (Personal €4,99, Unlimited €129, jednorázově, vrácení peněz do 60 dnů).
 
 ## Nasazení na Vercel (na klik)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkojott%2Fmailmcp-dist&env=MAILMCP_KEY,MAILMCP_LICENSE&envDescription=MAILMCP_KEY%3A%2032%20random%20bytes%20base64url.%20MAILMCP_LICENSE%3A%20your%20license%20key.&project-name=mailmcp&repository-name=mailmcp)
 
 1. `MAILMCP_KEY`: 32 náhodných bajtů base64url, např. `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"` (nebo generátor na `/start`).
-2. `MAILMCP_LICENSE`: klíč `mml1.…` z nákupu (výměna klíče Lemon Squeezy na https://mailmcp-three.vercel.app/claim).
+2. `MAILMCP_LICENSE`: klíč `mml1.…` z nákupu (výměna klíče Lemon Squeezy na https://mailmcp.ai/claim).
 3. Po nasazení otevřete `https://<projekt>.vercel.app/start` a postupujte podle průvodce. Uživatelé si tokeny vytvářejí na `/setup`.
 
 Změna `MAILMCP_KEY` zneplatní všechny tokeny.
