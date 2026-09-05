@@ -1,7 +1,8 @@
 # Changelog
 
-## 0.3.0
+## 0.4.0
 
+- 0.4.0: outgoing attachments
 - Sales copy pass: official-connector comparison (verified), attachments and split-key pushed on home, pricing, start, setup and llms.txt
 - Security review fixes: no owner mailboxes on the public home page, no-store on secret pages, generic errors, no licensee/e-mail echo, licence pubkey override compiled out of dist, honest wording and token lifetime in docs
 - English README, Lemon Squeezy guide and distribution README; EULA reordered: English translation first, governing Czech original below
@@ -16,4 +17,3 @@
 - Lemon Squeezy integration: /claim exchanges LS keys for mailmcp keys (activate/validate), license_key_created webhook with HMAC check and optional e-mail delivery, setup guide, env wiring
 - Proprietary EULA (Sendy-style, Czech governing + English): source visible, key required, no redistribution, 60-day refund, updates until next major; replaces AGPL
 - Licensing (v0.3.0): no free tier, Ed25519 license keys verified offline, Personal €4.99 / Unlimited €129 / deployment €990, /pricing page, license page for unlicensed servers, deploy flow with two keys
-- Copy pass: bilingual homepage that sells (hero, moment, permissions, FAQ, company band), sharper /start, /setup, /docs and README leads
