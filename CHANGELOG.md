@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.2 (2026-09-06)
+
+Second security release, after the independent second-model review (see /audit, section 12).
+
+- Mail hosts named in user tokens are resolved before connecting; private answers are refused and the connection is pinned to the vetted address.
+- Staged uploads are removed only from mailboxes the token may write to, and only if mailmcp staged them.
+- A move to Trash through modify_message requires the delete capability; the staging folder is reserved.
+- Send-rate limiters survive cache eviction; schema maxima cap what a token can configure.
+- Body limits are enforced on the bytes actually read; uploads require Content-Length.
+- Lemon Squeezy keys are accepted only for the configured variant ids (optional store pin); webhook events are marked handled after success.
+- send_draft respects the attachment policy and is bounded; oversized attachments and drafts are refused instead of truncated (this fix had been described in 0.4.1 but had not shipped).
+- The HTML part of a message is preferred over plain text (likewise).
+- Sanitizer: hidden classes inside links, hidden image alt text, percent-form white text, invalid entities, deep nesting; invisible Unicode removed inside the untrusted wrapper.
+- Setup form preserves policy fields it does not show when a token is loaded for editing; a send limit of 0 stays 0.
+- forward_message available to draft-only configurations; local files opened once and checked through the same descriptor; Referrer-Policy no-referrer; Docker source build fixed; release assets immutable.
+
 ## 0.4.1 (2026-09-06)
 
 Security release following the published audit (https://mailmcp.ai/audit).
