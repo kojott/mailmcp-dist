@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0 (2026-09-06)
+
+- Free tier: a server without MAILMCP_LICENSE runs in full with up to 5 mailboxes per token; every message the assistant composes (drafts, sends, forwards) ends with a "Sent with mailmcp.ai" signature (plain text after the "-- " delimiter, a link in the HTML part). Personal and Unlimited remove it.
+- MAILMCP_SIGNATURE=1 forces the signature on a licensed server (used on the vendor's demo server).
+- An invalid key still shows the licence page; a missing key no longer does.
+
 ## 0.4.2 (2026-09-06)
 
 Second security release, after the independent second-model review (see /audit, section 12).

@@ -22,6 +22,11 @@ OPEN SOURCE. By installing or using the Software you accept this agreement.
    Upon payment of the license fee the Author grants you a non-exclusive,
    non-transferable license to install and run the Software within the tier
    purchased:
+   0) Free (no licence key): you may install and run the Software without
+      payment, with at most 5 mailboxes per configuration or user token; every
+      message the Software composes carries the "Sent with mailmcp.ai"
+      signature, which you may not remove or alter. Sections 3, 4 (except
+      4a), 7, 8 and 9 apply to Free use as well.
    a) Personal: one running installation (one server or one device) for one
       natural person, at most 5 mailboxes in the configuration or in each
       user token.
@@ -91,6 +96,11 @@ Softwaru přijímáte tuto smlouvu.
 1. Udělení licence
    Po zaplacení licenčního poplatku vám Autor uděluje nevýhradní, nepřenosnou
    licenci k instalaci a provozu Softwaru v rozsahu zakoupené úrovně:
+   0) Free (bez licenčního klíče): Software smíte instalovat a provozovat bez
+      platby, nejvýše s 5 schránkami v konfiguraci nebo v uživatelském tokenu;
+      každá zpráva, kterou Software sestaví, nese podpis „Sent with
+      mailmcp.ai“, který nesmíte odstranit ani změnit. Články 3, 4 (kromě
+      4a), 7, 8 a 9 platí i pro použití Free.
    a) Personal: jedna běžící instalace (jeden server nebo jedno zařízení) pro
       jednu fyzickou osobu, nejvýše 5 poštovních schránek v konfiguraci
       nebo v každém uživatelském tokenu.
