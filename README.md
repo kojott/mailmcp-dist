@@ -29,7 +29,7 @@ Download `mailmcp.mcpb` from [Releases](https://github.com/kojott/mailmcp-dist/r
 
 ## Optional variables
 
-See `.env.example`: `MAILMCP_INVITE_CODE` (closed token registration), `MAILMCP_CONFIG` (the operator's own mailboxes, single-owner mode), `MAILMCP_PUBLIC_URL`, `MAILMCP_VIDEO_URL` (install video on the home page).
+See `.env.example`: `MAILMCP_INVITE_CODE` (closed token registration), `MAILMCP_ALLOW_PRIVATE_MAIL_HOSTS=1` (user tokens may point at intranet mail servers on private addresses; off by default so a public server cannot probe its own network), `MAILMCP_CONFIG` (the operator's own mailboxes, single-owner mode), `MAILMCP_PUBLIC_URL`, `MAILMCP_VIDEO_URL` (install video on the home page).
 
 ## Updates
 
