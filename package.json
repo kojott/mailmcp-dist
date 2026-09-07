@@ -1,6 +1,6 @@
 {
   "name": "mailmcp",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Self-hosted multi-account email MCP server (Gmail, Seznam, iCloud, any IMAP/SMTP). Your data never leaves your own accounts.",
   "private": true,
   "type": "module",

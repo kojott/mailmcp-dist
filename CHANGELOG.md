@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.3 (2026-09-07)
+
+- `OPENAI_APPS_CHALLENGE` serves the OpenAI plugin-directory domain verification token at /.well-known/openai-apps-challenge.
+
 ## 0.5.2 (2026-09-07)
 
 - MCP serverInfo now carries title, description, website (mailmcp.ai) and icons so ChatGPT and Claude can show them on the connector page; the mark is served at /icon.png and /icon.svg.
