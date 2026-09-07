@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.5 (2026-09-07)
+
+- Guide, /start and llms.txt: add the ChatGPT connector on the website rather than in the app, refresh the tool list after changing token rights, Automatic authentication with DCR as the fallback.
+
 ## 0.5.4 (2026-09-07)
 
 - ChatGPT "Automatic" sign-in (Client ID Metadata Document): a failed fetch of the client document is no longer cached for ten minutes, so one transient error cannot lock every later attempt into "invalid request"; the error page now says what happened and suggests DCR as a fallback; refusals are logged with the reason.
