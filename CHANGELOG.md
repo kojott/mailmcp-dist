@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.6 (2026-09-07)
+
+- All tools are always listed. ChatGPT stores the tool list when a connector is added, so a token that gained sending rights later never saw send_message; now the list is complete from the start and a call the account does not permit fails with an error naming the missing capability.
+
 ## 0.5.5 (2026-09-07)
 
 - Guide, /start and llms.txt: add the ChatGPT connector on the website rather than in the app, refresh the tool list after changing token rights, Automatic authentication with DCR as the fallback.
