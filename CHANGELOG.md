@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.2 (2026-09-07)
+
+- MCP serverInfo now carries title, description, website (mailmcp.ai) and icons so ChatGPT and Claude can show them on the connector page; the mark is served at /icon.png and /icon.svg.
+
 ## 0.5.1 (2026-09-07)
 
 - Optional Vercel Web Analytics, per deployment: `MAILMCP_ANALYTICS_SCRIPT` injects the cookieless script served by the deployment itself. Unset by default; a self-hosted copy loads nothing and never reports to the vendor. CSP allows same-origin scripts for it.
