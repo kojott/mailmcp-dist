@@ -1,4 +1,4 @@
-# mailmcp 0.5.6
+# mailmcp 0.5.7
 
 Your mail in ChatGPT, Claude and other MCP clients: Gmail, Outlook, iCloud, Fastmail, Yahoo, Zoho, Seznam.cz, Volný.cz and any IMAP/SMTP server. Mailbox passwords are encrypted in the user's browser and the server stores nothing.
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.7 (2026-09-07)
+
+- Gmail app passwords need 2-Step Verification: the exact Google message ("The setting you are looking for is not available for your account") is now explained on /start, /setup, /docs, the home FAQ, llms.txt and the README so people and assistants recognise it at once.
+
 ## 0.5.6 (2026-09-07)
 
 - All tools are always listed. ChatGPT stores the tool list when a connector is added, so a token that gained sending rights later never saw send_message; now the list is complete from the start and a call the account does not permit fails with an error naming the missing capability.
