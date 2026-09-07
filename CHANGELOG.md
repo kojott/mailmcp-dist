@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1 (2026-09-07)
+
+- Optional Vercel Web Analytics, per deployment: `MAILMCP_ANALYTICS_SCRIPT` injects the cookieless script served by the deployment itself. Unset by default; a self-hosted copy loads nothing and never reports to the vendor. CSP allows same-origin scripts for it.
+
 ## 0.5.0 (2026-09-06)
 
 - Free tier: a server without MAILMCP_LICENSE runs in full with up to 5 mailboxes per token; every message the assistant composes (drafts, sends, forwards) ends with a "Sent with mailmcp.ai" signature (plain text after the "-- " delimiter, a link in the HTML part). Personal and Unlimited remove it.

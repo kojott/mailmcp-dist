@@ -1,4 +1,4 @@
-# mailmcp 0.5.0 — prebuilt distribution, no build step
+# mailmcp 0.5.1 — prebuilt distribution, no build step
 FROM node:22-alpine
 WORKDIR /app
 ENV NODE_ENV=production PORT=8080
