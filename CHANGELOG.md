@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.4 (2026-09-07)
+
+- ChatGPT "Automatic" sign-in (Client ID Metadata Document): a failed fetch of the client document is no longer cached for ten minutes, so one transient error cannot lock every later attempt into "invalid request"; the error page now says what happened and suggests DCR as a fallback; refusals are logged with the reason.
+- Free-tier signature shortened to "Sent with mailmcp.ai · your mail in ChatGPT and Claude".
+- Connector description says that several mailboxes connect at once.
+
 ## 0.5.3 (2026-09-07)
 
 - `OPENAI_APPS_CHALLENGE` serves the OpenAI plugin-directory domain verification token at /.well-known/openai-apps-challenge.
