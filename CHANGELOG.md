@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1 (2026-09-10)
+
+- Refund period is 14 days, no questions asked (EULA, pricing, home page, guide, licence e-mail).
+
 ## 0.6.0 (2026-09-10)
 
 - Purchases moved from Lemon Squeezy to Stripe Managed Payments: Stripe is the merchant of record, adds VAT for the buyer's country, e-mails the receipt and a PDF invoice, handles refunds and disputes. Companies tick "I'm purchasing as a business" and enter a VAT ID at checkout.
