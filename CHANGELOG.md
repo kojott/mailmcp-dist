@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0 (2026-09-10)
+
+- Purchases moved from Lemon Squeezy to Stripe Managed Payments: Stripe is the merchant of record, adds VAT for the buyer's country, e-mails the receipt and a PDF invoice, handles refunds and disputes. Companies tick "I'm purchasing as a business" and enter a VAT ID at checkout.
+- New routes: `/api/checkout?tier=personal|unlimited` (starts the checkout; a self-hosted copy hands over to the vendor), `/claim?session_id=` (shows the key right after payment; the same purchase always yields the same key), `/api/claim` with an e-mail re-sends keys when SMTP is configured, `/api/stripe/webhook`.
+- `scripts/stripe-setup.mjs` creates products, prices and the webhook endpoint idempotently. Environment: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_PERSONAL`, `STRIPE_PRICE_UNLIMITED`, `STRIPE_WEBHOOK_SECRET`. The `LEMONSQUEEZY_*` variables are gone.
+
 ## 0.5.7 (2026-09-07)
 
 - Gmail app passwords need 2-Step Verification: the exact Google message ("The setting you are looking for is not available for your account") is now explained on /start, /setup, /docs, the home FAQ, llms.txt and the README so people and assistants recognise it at once.
