@@ -2,14 +2,14 @@
 
 Your mail in ChatGPT, Claude and other MCP clients: Gmail, Outlook, iCloud, Fastmail, Yahoo, Zoho, Seznam.cz, Volný.cz and any IMAP/SMTP server. Mailbox passwords are encrypted in the user's browser and the server stores nothing.
 
-This is the **prebuilt distribution** (minified files in `dist/`). The source code is available to customers on request. Running it requires a licence key: **https://mailmcp.ai/pricing** (Personal €4.99, Unlimited €129, one-time, 60-day refund).
+This is the **prebuilt distribution** (minified files in `dist/`). The source code is available to customers on request. It runs without a key as the free tier (up to 5 mailboxes per token, a "Sent with mailmcp.ai" signature on every composed message); a licence key removes the signature and, with Unlimited, the cap: **https://mailmcp.ai/pricing** (Personal €4.99, Unlimited €129, one-time, 14-day refund). Removing or altering the licence check or the free-tier signature is prohibited by the licence agreement.
 
 ## Deploy to Vercel (one click)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkojott%2Fmailmcp-dist&env=MAILMCP_KEY,MAILMCP_LICENSE&envDescription=MAILMCP_KEY%3A%2032%20random%20bytes%20base64url.%20MAILMCP_LICENSE%3A%20your%20license%20key.&project-name=mailmcp&repository-name=mailmcp)
 
 1. `MAILMCP_KEY`: 32 random bytes as base64url, e.g. `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"` (or the generator on `/start`).
-2. `MAILMCP_LICENSE`: the `mml1.…` key from your purchase (exchange the Lemon Squeezy key at https://mailmcp.ai/claim).
+2. `MAILMCP_LICENSE`: the `mml1.…` key shown right after your purchase at https://mailmcp.ai/claim (leave it empty for the free tier: up to 5 mailboxes, a "Sent with mailmcp.ai" signature on composed mail).
 3. After deployment open `https://<project>.vercel.app/start` and follow the guide. Users create their tokens on `/setup`.
 
 Changing `MAILMCP_KEY` invalidates every token.
