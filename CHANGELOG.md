@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.2 (2026-09-10)
+
+- `LICENSE_REPLY_TO` sets the Reply-To of the licence key e-mails.
+
 ## 0.6.1 (2026-09-10)
 
 - Refund period is 14 days, no questions asked (EULA, pricing, home page, guide, licence e-mail).
