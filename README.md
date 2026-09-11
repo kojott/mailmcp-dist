@@ -107,4 +107,4 @@ The licence agreement is in [`LICENSE`](LICENSE) (English translation first, the
 
 Guide for people: [mailmcp.ai/docs](https://mailmcp.ai/docs). Guide for assistants, paste the link into ChatGPT or Claude and let it walk you through: [mailmcp.ai/llms.txt](https://mailmcp.ai/llms.txt). Support: [jiridolejs.cz/kontakt](https://jiridolejs.cz/kontakt).
 
-<sub>Version 0.6.3. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>
+<sub>Version 0.6.4. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>

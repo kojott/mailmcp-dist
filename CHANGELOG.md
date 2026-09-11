@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.4 (2026-09-11)
+
+- Link previews: Open Graph and Twitter tags on every page with an English title and description and a 1200x630 image served at /og.jpg (WhatsApp, iMessage, Slack, LinkedIn showed a Czech text and no picture).
+
 ## 0.6.3 (2026-09-11)
 
 - Home page: the install video embed sends a referrer to YouTube (the site's no-referrer policy made the player fail with error 153); chapter times and copy match the published film.
