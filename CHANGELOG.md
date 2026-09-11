@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.5 (2026-09-11)
+
+- Home page and guide: a "what it protects, what it reduces, what it cannot solve" section; the audit's residual risks gain the point that content the assistant has read can leave through the assistant's own reply or other tools.
+
 ## 0.6.4 (2026-09-11)
 
 - Link previews: Open Graph and Twitter tags on every page with an English title and description and a 1200x630 image served at /og.jpg (WhatsApp, iMessage, Slack, LinkedIn showed a Czech text and no picture).
