@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0 (2026-09-12)
+
+- New visual direction ("Signál"): the original red accent on a warm off-white ground, Archivo, rounded cards and buttons, white navigation with a free-connect button, an ink-black closing band; the black masthead strip and most 2 px rules are gone. New Open Graph image.
+- Web redesign around the personas: a seven-section home page (hero without jargon, who it is for, one ordinary day, three steps, why not the official connector, three promises, price and FAQ), new `/teams` (companies and their IT), `/security` (the technical depth moved off the home page) and `/deploy` (own-server wizard moved off `/start`), `/start` with a "Will it work for me?" compatibility block and the install video, navigation "Connect / For teams", vendor in the footer (Swinging Dogs s.r.o., DIČ CZ24825671).
+- Prices: Free on mailmcp.ai is 2 mailboxes per token with the signature (tokens from before 0.7.0 keep 5); Personal €19 once for your own server or Claude Desktop; Unlimited €149 once per server; deployment with onboarding €990 (Unlimited included). Earlier €4.99 buyers owe nothing. Workshop code −€10. Groundwork for a future hosted plan (licence keys may carry an expiry; a Personal key can be sealed into a token) ships unused.
+- Outlook.com and Microsoft 365 removed from provider lists (passwords are not accepted by Microsoft); listed as "not yet" in the compatibility block.
+- `llms.txt` and the guide updated (Stripe instead of the stale Lemon Squeezy mention).
+
 ## 0.6.5 (2026-09-11)
 
 - Home page and guide: a "what it protects, what it reduces, what it cannot solve" section; the audit's residual risks gain the point that content the assistant has read can leave through the assistant's own reply or other tools.

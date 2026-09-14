@@ -26,15 +26,15 @@ Use mailmcp when you have more than one mailbox, a provider without an official 
 | | Official connectors | mailmcp |
 | --- | --- | --- |
 | Mailboxes | one per connector | several at once, one token |
-| Providers | Gmail, Outlook | Gmail, Outlook.com, iCloud, Fastmail, Yahoo, Zoho, Seznam.cz and any IMAP/SMTP server with password sign-in, including your own domain |
+| Providers | Gmail, Outlook | Gmail, iCloud, Fastmail, Yahoo, Zoho, Seznam.cz and any IMAP/SMTP server with password sign-in, including your own domain (Microsoft 365 / Outlook.com do not work with passwords, OAuth planned) |
 | Attachments | read some, send none | one-hour download links; sending from the mailbox, from a file the assistant uploads, or by forwarding |
 | Authentication | OAuth grant held by the AI vendor | an app password, encrypted in your browser into a token; the server keeps one master key and no database |
 | Hosting | the vendor's | yours: Vercel, Docker, any Node 22 host, or Claude Desktop without a server |
-| Cost | included in the assistant's plan | free with a signature in sent mail, or one payment (€4.99 / €129) |
+| Cost | included in the assistant's plan | free with a signature in sent mail, or one payment (€19 / €149) |
 
 ## Quickstart
 
-**Requirements.** Node 22 (or Vercel, or Docker), an HTTPS address (ChatGPT and Claude only connect over HTTPS), and an app password for each mailbox. Gmail: turn on 2-Step Verification first, otherwise Google hides the app-passwords page (organisation policies or Advanced Protection can hide it too). Microsoft 365 / Exchange Online usually has password sign-in over IMAP disabled by Microsoft, so it does not work yet; Outlook.com personal accounts with an app password do.
+**Requirements.** Node 22 (or Vercel, or Docker), an HTTPS address (ChatGPT and Claude only connect over HTTPS), and an app password for each mailbox. Gmail: turn on 2-Step Verification first, otherwise Google hides the app-passwords page (organisation policies or Advanced Protection can hide it too). Microsoft 365 / Exchange Online and Outlook.com do not work yet: Microsoft does not allow password sign-in over IMAP (OAuth planned).
 
 1. **Deploy.** Click the Vercel button above; it asks for `MAILMCP_KEY` (32 random bytes as base64url, `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"`) and `MAILMCP_LICENSE` (your key, or empty for the free tier). Or run it yourself:
 
@@ -81,9 +81,9 @@ Every tool is listed to the client; a call the token does not permit fails with 
 
 ## Pricing
 
-| Free | Personal, €4.99 once | Unlimited, €129 once |
+| Free | Personal, €19 once | Unlimited, €149 once |
 | --- | --- | --- |
-| All tools included, up to 5 mailboxes per token. Every message the assistant composes (drafts, sends, forwards) ends with "Sent with mailmcp.ai". | One person, up to 5 mailboxes per token, no signature. | One server for the whole company, unlimited users and mailboxes. |
+| All tools included, up to 2 mailboxes per token (tokens created before 0.7.0 keep 5). Every message the assistant composes (drafts, sends, forwards) ends with "Sent with mailmcp.ai". | One person, up to 5 mailboxes per token, no signature, on your own server or in Claude Desktop. | One server for the whole company, unlimited users and mailboxes. |
 
 All 0.x updates are included; a 1.0 upgrade may carry a fee, and 0.x keeps working. 14-day refund, no questions asked. Company deployment, €990: two hours of online onboarding on your Vercel or cloud, Unlimited licence included. Buy at [mailmcp.ai/pricing](https://mailmcp.ai/pricing): the key appears right after payment and Stripe e-mails the invoice.
 
@@ -107,4 +107,4 @@ The licence agreement is in [`LICENSE`](LICENSE) (English translation first, the
 
 Guide for people: [mailmcp.ai/docs](https://mailmcp.ai/docs). Guide for assistants, paste the link into ChatGPT or Claude and let it walk you through: [mailmcp.ai/llms.txt](https://mailmcp.ai/llms.txt). Support: [jiridolejs.cz/kontakt](https://jiridolejs.cz/kontakt).
 
-<sub>Version 0.6.5. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>
+<sub>Version 0.7.0. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>
