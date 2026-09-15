@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.1 (2026-09-15)
+
+- Replies stay in the thread: new tools `reply_draft` and `reply_send` take the uid of the message being answered and the server sets In-Reply-To/References, keeps the "Re:" subject, picks the recipients (sender, or everyone with `reply_all`) and quotes the original under the reply, as plain text and as an HTML `<blockquote type="cite">`. `create_draft`/`send_message` with `in_reply_to_uid` do the same. Previously a reply could land as a new, unthreaded message when the assistant skipped the threading parameter.
+- HTML alternative for every composed message, optional `html` body parameter.
+- Per-mailbox signature (`signature_text`, optional `signature_html`) on the setup page; appended under every reply and draft.
+- Assistant instructions and `llms.txt` teach the command vocabulary: "napiš mi odpověď / navrhni" = suggestion in the chat only, "odpověz / napiš koncept" = draft in the thread, "pošli / odešli" = send (when allowed).
+
 ## 0.7.0 (2026-09-12)
 
 - New visual direction ("Signál"): the original red accent on a warm off-white ground, Archivo, rounded cards and buttons, white navigation with a free-connect button, an ink-black closing band; the black masthead strip and most 2 px rules are gone. New Open Graph image.
