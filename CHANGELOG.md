@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.2 (2026-09-15)
+
+- Signature with a photo or logo without putting it into the token: tick "signature from my mailbox" on the setup page and keep the signature as the newest message in the mailbox folder `mailmcp-signature` (send it to yourself from your mail client, or hand the HTML to the assistant: new tools `get_signature` / `set_signature`). Its inline images are embedded in every reply; nothing is stored on the server.
+- Inline (cid) images inside HTML mail are no longer listed as attachments.
+- IMAP connection failures are logged (without secrets) and explained to the assistant with the fix: revoked Gmail app password, missing app password, IMAP disabled, network problems.
+
 ## 0.7.1 (2026-09-15)
 
 - Replies stay in the thread: new tools `reply_draft` and `reply_send` take the uid of the message being answered and the server sets In-Reply-To/References, keeps the "Re:" subject, picks the recipients (sender, or everyone with `reply_all`) and quotes the original under the reply, as plain text and as an HTML `<blockquote type="cite">`. `create_draft`/`send_message` with `in_reply_to_uid` do the same. Previously a reply could land as a new, unthreaded message when the assistant skipped the threading parameter.
