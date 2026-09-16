@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.6 (2026-09-16)
+
+- Over stdio, `MAILMCP_KEY` on its own (the HTTP server's token mode) no longer stops the server: it starts with zero mailboxes like a fully unconfigured one, so catalog runners and reviewers that set only the key still get the tool list.
+
 ## 0.7.5 (2026-09-16)
 
 - The distribution package is named `mailmcp-dist` (was `mailmcp`), so directories no longer link the listing to the unrelated npm package of that name. The `mailmcp` CLI name and every entrypoint are unchanged.
