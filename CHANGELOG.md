@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.4 (2026-09-16)
+
+- The stdio server starts without any configuration: it lists every tool with zero mailboxes and each mailbox call explains that the owner creates the configuration on the setup page. Catalog checks (Glama) and reviewers can introspect the `.mcpb` before configuring it; a present but broken configuration still fails on start.
+
 ## 0.7.3 (2026-09-16)
 
 - Catalog groundwork: `/privacy` and `/terms` pages (linked from the footer, the MCPB manifest and llms.txt), `/.well-known/mcp-registry-auth` (official MCP Registry domain verification, line from `MAILMCP_REGISTRY_AUTH`), `/.well-known/glama.json` (Glama ownership claim) and `/.well-known/mcp/server-card.json` (static server card with every tool and schema, built from the real server, for directories that cannot pass the OAuth gate).
