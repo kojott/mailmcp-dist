@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.5 (2026-09-16)
+
+- The distribution package is named `mailmcp-dist` (was `mailmcp`), so directories no longer link the listing to the unrelated npm package of that name. The `mailmcp` CLI name and every entrypoint are unchanged.
+
 ## 0.7.4 (2026-09-16)
 
 - The stdio server starts without any configuration: it lists every tool with zero mailboxes and each mailbox call explains that the owner creates the configuration on the setup page. Catalog checks (Glama) and reviewers can introspect the `.mcpb` before configuring it; a present but broken configuration still fails on start.
