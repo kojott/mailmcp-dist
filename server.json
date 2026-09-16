@@ -29,7 +29,7 @@
       "registryType": "mcpb",
       "identifier": "https://github.com/kojott/mailmcp-dist/releases/download/v0.7.6/mailmcp.mcpb",
       "version": "0.7.6",
-      "fileSha256": "ee922b44a9a00c84b1583ba968a32c2c7b96456cfafe891eeb35a1f1c4ee843e",
+      "fileSha256": "d6ea90b0676fa40b616164b9ee29c094ecc13a92425c5401682e4513c75a89c3",
       "transport": {
         "type": "stdio"
       }
