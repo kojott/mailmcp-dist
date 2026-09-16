@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.mailmcp/mailmcp",
+  "title": "mailmcp",
+  "description": "Your mailboxes in ChatGPT and Claude: Gmail, iCloud, Fastmail, any IMAP. Passwords stay yours.",
+  "version": "0.7.3",
+  "websiteUrl": "https://mailmcp.ai",
+  "repository": {
+    "url": "https://github.com/kojott/mailmcp-dist",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://mailmcp.ai/icon.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mailmcp.ai/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/kojott/mailmcp-dist/releases/download/v0.7.3/mailmcp.mcpb",
+      "version": "0.7.3",
+      "fileSha256": "71b41c9777522fbce0429a99b2d27a26948d841d3b708f28ee2707ad8443ceda",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

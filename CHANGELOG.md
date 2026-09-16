@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.3 (2026-09-16)
+
+- Catalog groundwork: `/privacy` and `/terms` pages (linked from the footer, the MCPB manifest and llms.txt), `/.well-known/mcp-registry-auth` (official MCP Registry domain verification, line from `MAILMCP_REGISTRY_AUTH`), `/.well-known/glama.json` (Glama ownership claim) and `/.well-known/mcp/server-card.json` (static server card with every tool and schema, built from the real server, for directories that cannot pass the OAuth gate).
+- The distribution build writes `server.json` (hosted endpoint + MCPB release with its SHA-256) and `pnpm dist:push` publishes it to the official MCP Registry when `mcp-publisher` is logged in.
+- MCPB manifest lists all tools (it had stopped at 0.4.0), plus homepage, documentation, support and privacy policy.
+
 ## 0.7.2 (2026-09-15)
 
 - Signature with a photo or logo without putting it into the token: tick "signature from my mailbox" on the setup page and keep the signature as the newest message in the mailbox folder `mailmcp-signature` (send it to yourself from your mail client, or hand the HTML to the assistant: new tools `get_signature` / `set_signature`). Its inline images are embedded in every reply; nothing is stored on the server.
