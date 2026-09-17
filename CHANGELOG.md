@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.7 (2026-09-17)
+
+- `get_message` and `get_attachment` (text-like files) now carry the body in `structuredContent.text` as well, wrapped as untrusted content exactly like in `content`. Clients that hand the model `structuredContent` when it is present (Claude Code) saw only headers, `body_chars` and `truncated`; Codex, which reads `content`, was unaffected.
+
 ## 0.7.6 (2026-09-16)
 
 - Over stdio, `MAILMCP_KEY` on its own (the HTTP server's token mode) no longer stops the server: it starts with zero mailboxes like a fully unconfigured one, so catalog runners and reviewers that set only the key still get the tool list.
