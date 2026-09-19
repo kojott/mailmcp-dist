@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.8 (2026-09-19)
+
+- Serves `/.well-known/microsoft-identity-association.json` with the id of the vendor's Entra app "mailmcp" (publisher-domain proof for the upcoming Microsoft sign-in). `MAILMCP_MS_CLIENT_ID` overrides the id for operators with their own registration.
+
 ## 0.7.7 (2026-09-17)
 
 - `get_message` and `get_attachment` (text-like files) now carry the body in `structuredContent.text` as well, wrapped as untrusted content exactly like in `content`. Clients that hand the model `structuredContent` when it is present (Claude Code) saw only headers, `body_chars` and `truncated`; Codex, which reads `content`, was unaffected.
