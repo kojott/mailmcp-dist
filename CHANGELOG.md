@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.9 (2026-09-22)
+
+- The OAuth sign-in page (what ChatGPT and Claude show when you connect the server) explains where the token comes from: a collapsible "Where do I get the token?" with the three setup steps, a link to this server's `/setup`, the invite-code note and a reminder to keep the token safe.
+
 ## 0.7.8 (2026-09-19)
 
 - Serves `/.well-known/microsoft-identity-association.json` with the id of the vendor's Entra app "mailmcp" (publisher-domain proof for the upcoming Microsoft sign-in). `MAILMCP_MS_CLIENT_ID` overrides the id for operators with their own registration.
