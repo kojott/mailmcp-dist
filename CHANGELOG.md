@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.8.0 (2026-09-23)
+
+### Before you upgrade (breaking)
+
+A server that issues user tokens (`MAILMCP_KEY` without an owner configuration, which is what the one-click Vercel deploy sets up) **stops issuing tokens after the update** until you set one of these variables:
+
+- `MAILMCP_INVITE_CODE`: a code of at least 8 characters, for example `KX7P-2MQR-9TWD`. Whoever creates a token on `/setup` (or signs in with Microsoft there) has to type it, so strangers cannot add mailboxes to your server. Give it only to the people who should use the server.
+- or `MAILMCP_OPEN_SIGNUP=1`, only if you deliberately run a public server that anyone may use.
+
+On Vercel: open the project → **Settings → Environment Variables** → add `MAILMCP_INVITE_CODE` for **Production** → save, then deploy 0.8.0 (or **Deployments → … → Redeploy** if the update is already deployed, since variables apply to new deployments only). With Docker or on a VPS, add the variable to your `.env` or `docker run -e` and restart.
+
+What does not change: **tokens already issued keep working**, including in Claude and ChatGPT connectors; owner mode (`MAILMCP_CONFIG`) and Claude Desktop (`.mcpb`) need nothing. Until the variable is set, `/setup` shows the operator a notice instead of issuing a token, and `/api/seal` answers 403.
+
+Optional, for Outlook: personal Outlook.com accounts sign in with a code on any server without further setup. For work or school Microsoft 365 accounts on your own server, register your own Microsoft app and set `MAILMCP_MS_CLIENT_ID` + `MAILMCP_MS_REDIRECT=1` (steps in `/docs`, chapter Outlook, "Work accounts on your own server"), because new Microsoft 365 tenants block sign-in with a code.
+
+### Changes
+
+- **Outlook.com and Microsoft 365 mailboxes**, through a Microsoft sign-in and Microsoft Graph instead of a password over IMAP/SMTP. The setup page offers "Sign in with Microsoft" for the provider Outlook / Microsoft 365: a popup with the account picker where the server's origin is a registered redirect URI (mailmcp.ai, or your own Entra app with `MAILMCP_MS_CLIENT_ID` + `MAILMCP_MS_REDIRECT=1`), otherwise a short code: the page first asks for a personal account (typed at microsoft.com/link) or a work or school account (login.microsoft.com/device). The popup pre-fills the address typed on the page and offers "Use another account", so a second mailbox needs no private window. Work accounts on a self-hosted server usually need the operator's own Entra registration (new Microsoft 365 tenants block sign-in with a code); `/docs` has the steps, with the redirect URI under "Mobile and desktop applications". The sign-in is gated by the same invite code as token creation, and the device-code relay requires one even on a server running with `MAILMCP_OPEN_SIGNUP=1`. The consented Microsoft permissions follow the mailbox capabilities: `Mail.Read` for a read-only mailbox, `Mail.ReadWrite` + `Mail.Send` for anything more, so widening capabilities later needs a new sign-in. At most **3** Outlook mailboxes per token (refresh tokens are large and the token travels in a request header). Shared mailboxes and send-as aliases are not supported.
+- A Microsoft sign-in is good for **about 90 days**; the date is shown on `/setup` and returned by `list_accounts` as `reauth_by`. A client that refreshes its connection through our own OAuth (claude.ai, Claude Code, ChatGPT when it refreshes) carries the renewed Microsoft sign-in: each Outlook refresh token is rolled and the user token re-sealed. Other clients holding the same token keep the original one and reach the ceiling on their own schedule. Removing capabilities from a mailbox does not shrink the permission already granted at Microsoft; sign in again with fewer ticked, or revoke the app at Microsoft. Bearer-token clients sign in again: load the token with the edit password, "Sign in again", generate the token.
+- Kill switches: `MAILMCP_MS_DISABLED=1` hides the Microsoft sign-in and answers 404 on every `/api/ms/*` route; `MAILMCP_DISABLE_GRAPH=1` refuses Outlook mailboxes at runtime, including in tokens already issued.
+- **Breaking:** a server that issues user tokens now requires `MAILMCP_INVITE_CODE` (at least 8 characters), or `MAILMCP_OPEN_SIGNUP=1` for a deliberately public server. Without either, `/api/seal` and the Microsoft sign-in routes answer 403 and `/setup` shows a notice for the operator. Tokens already issued keep working.
+- `uid` is accepted as a string as well as a number, because Graph message ids are opaque strings. A move returns `moved_uid`, the id to use afterwards.
+- Send results carry `saved_to_sent`: `true`, `false` when filing the Sent copy failed, or `null` when the provider files it itself. Zoho now files its own copy (like Gmail and Graph) instead of getting a duplicate.
+- Composing refuses a body or subject containing tool-call markup (`<invoke`, `<function_calls`, `<parameter name=` and friends), which is leaked model output rather than text a person meant to send.
+- Special folders are also recognised under their Spanish, Portuguese, French, German, Italian, Dutch and Polish names on servers that advertise no SPECIAL-USE, so Sent and Drafts are found instead of created a second time in English.
+- `get_attachment` returns the extracted text of PDF attachments up to 5 MB (20 000 characters, `text_source: "pdf"`), wrapped as untrusted like any body; the text can contain passages invisible in the rendered document, and a scanned PDF with no text layer keeps the download link.
+- stdio only: `get_attachment` takes `save_to`, a directory inside `policy.attachment_dirs`, and writes the file there instead of returning bytes.
+- The Claude Desktop build asks GitHub once per start whether a newer release exists and tells the assistant; `MAILMCP_NO_UPDATE_CHECK=1` opts out.
+- `/docs`, `/privacy`, `/terms`, the audit document, the home page and `/llms.txt` describe all of the above, including where to revoke a Microsoft sign-in and the admin-consent link for tenants that restrict user consent.
+
 ## 0.7.9 (2026-09-22)
 
 - The OAuth sign-in page (what ChatGPT and Claude show when you connect the server) explains where the token comes from: a collapsible "Where do I get the token?" with the three setup steps, a link to this server's `/setup`, the invite-code note and a reminder to keep the token safe.

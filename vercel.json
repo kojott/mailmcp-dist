@@ -1,4 +1,9 @@
 {
   "framework": "hono",
-  "installCommand": "npm install --omit=dev --no-audit --no-fund"
+  "installCommand": "npm install --omit=dev --no-audit --no-fund",
+  "functions": {
+    "**/server.js": {
+      "maxDuration": 60
+    }
+  }
 }
