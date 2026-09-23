@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.8.1 (2026-09-23)
+
+### Before you upgrade (breaking for Outlook on your own server)
+
+Microsoft sign-in on a self-hosted server now needs **your own Microsoft Entra app registration**: set `MAILMCP_MS_CLIENT_ID` (steps in `/docs`, chapter Outlook, "Microsoft sign-in on your own server"), and `MAILMCP_MS_REDIRECT=1` when your server's address is registered as a redirect URI. Without it `/setup` offers no Microsoft sign-in. The vendor's app "mailmcp" is used on mailmcp.ai only: under it any copy could relay sign-ins with a code, which is a phishing tool in our name. Outlook mailboxes that were already signed in with a code through the vendor's app keep working until their sign-in expires (about 90 days); a new sign-in with a code under the vendor's app is refused by Microsoft, so sign them in again through your own registration before then.
+
+### Security
+
+- The device-code sign-in (`/api/ms/device`, `/api/ms/poll`) runs only under the operator's own Entra app; under the vendor's app it answers 404 and the setup page hides it.
+- OAuth sign-in: a refused user token counts against its own address only (10 per 15 minutes). The global cap of 30 per 15 minutes now applies to owner-password guesses only, so a few addresses can no longer lock every user of a shared server out of sign-in.
+- Microsoft popup sign-in: start and callback are limited per address (10 and 20 per 15 minutes) without a global cap anyone could spend.
+
 ## 0.8.0 (2026-09-23)
 
 ### Before you upgrade (breaking)

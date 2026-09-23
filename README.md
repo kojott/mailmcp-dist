@@ -65,7 +65,7 @@ Behind a reverse proxy set `MAILMCP_PUBLIC_URL` or `MAILMCP_TRUST_PROXY=1`. Comp
 | `MAILMCP_LICENSE` | Your licence key. Empty runs the free tier. |
 | `MAILMCP_INVITE_CODE` | Required on a token-issuing server: the code your users type on `/setup`, at least 8 characters. |
 | `MAILMCP_OPEN_SIGNUP` | `1` on a deliberately public server, in place of an invite code. |
-| `MAILMCP_MS_CLIENT_ID` | Your own Entra app registration id for the Microsoft sign-in. Default: the vendor's public client id. |
+| `MAILMCP_MS_CLIENT_ID` | Your own Entra app registration id for the Microsoft sign-in. **Required** for any Microsoft sign-in on your server (the vendor's app is used on mailmcp.ai only). |
 | `MAILMCP_MS_REDIRECT` | `1` when this origin is registered as a redirect URI (`https://<host>/api/ms/callback`) in that app: the setup page then signs in through a popup instead of a device code. |
 | `MAILMCP_MS_DISABLED` | `1` hides the Microsoft sign-in and answers 404 on every `/api/ms/*` route. |
 | `MAILMCP_DISABLE_GRAPH` | `1` refuses Outlook mailboxes at runtime, including in tokens already issued. |
@@ -75,13 +75,13 @@ Behind a reverse proxy set `MAILMCP_PUBLIC_URL` or `MAILMCP_TRUST_PROXY=1`. Comp
 
 ## Outlook and Microsoft 365
 
-These mailboxes have no password: Microsoft rejects password sign-in on most accounts. The user picks the provider **Outlook / Microsoft 365** on `/setup` and clicks **Sign in with Microsoft**. On a server whose origin is a registered redirect URI (set `MAILMCP_MS_CLIENT_ID` to your own Entra app and `MAILMCP_MS_REDIRECT=1`) that opens a popup with the account picker; otherwise the page asks whether the user signs in with a personal account (Outlook.com, Hotmail) or a work or school account (Microsoft 365) and shows a short code to type at [microsoft.com/link](https://www.microsoft.com/link) or [login.microsoft.com/device](https://login.microsoft.com/device) respectively. Either way the sign-in sits behind your invite code (the device-code relay requires one even with `MAILMCP_OPEN_SIGNUP=1`), and your users see the app **mailmcp** by Swinging Dogs s.r.o. on the consent screen unless you register your own. No token reaches the vendor: your server runs the sign-in.
+These mailboxes have no password: Microsoft rejects password sign-in on most accounts. The user picks the provider **Outlook / Microsoft 365** on `/setup` and clicks **Sign in with Microsoft**. This needs your own Entra app registration (`MAILMCP_MS_CLIENT_ID`, steps below); without it the setup page offers no Microsoft sign-in. When your server's origin is a registered redirect URI (`MAILMCP_MS_REDIRECT=1`) the button opens a popup with the account picker; otherwise the page asks whether the user signs in with a personal account (Outlook.com, Hotmail) or a work or school account (Microsoft 365) and shows a short code to type at [microsoft.com/link](https://www.microsoft.com/link) or [login.microsoft.com/device](https://login.microsoft.com/device) respectively. Either way the sign-in sits behind your invite code (the device-code relay requires one even with `MAILMCP_OPEN_SIGNUP=1`), and your users see your app's name on the consent screen. No token reaches the vendor: your server runs the sign-in.
 
 What to tell your users: at most **three** Outlook mailboxes per token; the consented Microsoft permissions follow the capabilities they tick (`Mail.Read` for read-only, otherwise `Mail.ReadWrite` and `Mail.Send`), so widening them later needs a new sign-in; a sign-in lasts **about 90 days** (the date is on `/setup` and in `list_accounts` as `reauth_by`, and clients that refresh through our OAuth have it rolled automatically); changing the mailbox password does not end it, revoking the app at Microsoft does, for every token that used that account. Tenants that leave consent to administrators need a one-off approval at `https://login.microsoftonline.com/organizations/adminconsent?client_id=<your client id>`. Mail then flows over Microsoft Graph, so message ids are strings rather than numbers and labels are Outlook categories. Full guide: [mailmcp.ai/docs](https://mailmcp.ai/docs).
 
-### Work accounts on your own server
+### Your own Microsoft app registration
 
-New Microsoft 365 tenants block sign-in with a code (security defaults, AADSTS530035), so the code flow through the vendor's registration serves personal accounts but often not work accounts. For those, register an app of your own and switch to the popup flow:
+Microsoft sign-in on your server needs an app registration of your own (the vendor's registration is used on mailmcp.ai only). Register it and use the popup flow, which works for personal and work accounts alike; new Microsoft 365 tenants block sign-in with a code (security defaults, AADSTS530035):
 
 1. [Microsoft Entra](https://entra.microsoft.com) → App registrations → New registration; supported account types: **Accounts in any organizational directory and personal Microsoft accounts**.
 2. Authentication → add the platform **Mobile and desktop applications** (not Web) with the redirect URI `https://<your host>/api/ms/callback`. mailmcp is a public client with no secret; under the Web platform Microsoft demands one and the sign-in fails with AADSTS7000218.
@@ -144,4 +144,4 @@ The licence agreement is in [`LICENSE`](LICENSE) (English translation first, the
 
 Guide for people: [mailmcp.ai/docs](https://mailmcp.ai/docs). Guide for assistants, paste the link into ChatGPT or Claude and let it walk you through: [mailmcp.ai/llms.txt](https://mailmcp.ai/llms.txt). Support: [jiridolejs.cz/kontakt](https://jiridolejs.cz/kontakt).
 
-<sub>Version 0.8.0. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>
+<sub>Version 0.8.1. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>

@@ -3,7 +3,7 @@
   "name": "ai.mailmcp/mailmcp",
   "title": "mailmcp",
   "description": "Your mailboxes in ChatGPT and Claude: Gmail, iCloud, Fastmail, any IMAP. Passwords stay yours.",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "websiteUrl": "https://mailmcp.ai",
   "repository": {
     "url": "https://github.com/kojott/mailmcp-dist",
@@ -27,9 +27,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/kojott/mailmcp-dist/releases/download/v0.8.0/mailmcp.mcpb",
-      "version": "0.8.0",
-      "fileSha256": "077257ce882c68a50c8a951b7ba3817e82079a6be89d00d1f11c423a872c8a79",
+      "identifier": "https://github.com/kojott/mailmcp-dist/releases/download/v0.8.1/mailmcp.mcpb",
+      "version": "0.8.1",
+      "fileSha256": "81744bc6b142c605e0e04e115217f02b892462bdd88e40fef0d659c773d4abbb",
       "transport": {
         "type": "stdio"
       }
