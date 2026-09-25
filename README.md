@@ -69,6 +69,7 @@ Behind a reverse proxy set `MAILMCP_PUBLIC_URL` or `MAILMCP_TRUST_PROXY=1`. Comp
 | `MAILMCP_MS_REDIRECT` | `1` when this origin is registered as a redirect URI (`https://<host>/api/ms/callback`) in that app: the setup page then signs in through a popup instead of a device code. |
 | `MAILMCP_MS_DISABLED` | `1` hides the Microsoft sign-in and answers 404 on every `/api/ms/*` route. |
 | `MAILMCP_DISABLE_GRAPH` | `1` refuses Outlook mailboxes at runtime, including in tokens already issued. |
+| `MAILMCP_ATTACHMENT_DIRS` | stdio only: folders (separated by `:` on macOS/Linux, `;` on Windows) where attachments may be saved and read, in addition to `policy.attachment_dirs`. Claude Desktop sets them in the extension settings. |
 | `MAILMCP_NO_UPDATE_CHECK` | `1` stops the Claude Desktop build from asking GitHub for the latest release on start. |
 | `MAILMCP_PUBLIC_URL` | The public address, when the server is behind your own reverse proxy. |
 | `MAILMCP_ALLOW_PRIVATE_MAIL_HOSTS` | `1` lets user tokens name mail servers on private addresses. |
@@ -144,4 +145,4 @@ The licence agreement is in [`LICENSE`](LICENSE) (English translation first, the
 
 Guide for people: [mailmcp.ai/docs](https://mailmcp.ai/docs). Guide for assistants, paste the link into ChatGPT or Claude and let it walk you through: [mailmcp.ai/llms.txt](https://mailmcp.ai/llms.txt). Support: [jiridolejs.cz/kontakt](https://jiridolejs.cz/kontakt).
 
-<sub>Version 0.8.1. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>
+<sub>Version 0.8.2. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>

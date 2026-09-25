@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.2 (2026-09-25)
+
+- Claude Desktop: saving attachments to disk works without touching the configuration. The extension settings have a new field **Attachment folders** (Downloads by default); `get_attachment` with `save_to` writes the file itself, PDFs included, into one of them, and the assistant is told which folders it may use. Before, the only switch was `policy.attachment_dirs` inside the encrypted configuration, so the call failed and the assistant fell back to the PDF text. After updating, check the field once in Settings → Extensions → mailmcp.
+- Other stdio clients (Claude Code, Cursor): `MAILMCP_ATTACHMENT_DIRS`, folders separated by `:` (`;` on Windows), adds to `policy.attachment_dirs`.
+
 ## 0.8.1 (2026-09-23)
 
 ### Before you upgrade (breaking for Outlook on your own server)
