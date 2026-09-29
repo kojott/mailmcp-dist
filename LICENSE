@@ -1,8 +1,12 @@
 mailmcp — END USER LICENSE AGREEMENT (EULA)
 mailmcp — LICENČNÍ SMLOUVA S KONCOVÝM UŽIVATELEM
 
-Version 1.0, 5 September 2026.
-Author: Jiří Dolejš, https://jiridolejs.cz (the "Author")
+Version 1.1 of 29 September 2026.
+Licensor: Swinging Dogs s.r.o., company ID (IČO) 24825671, VAT ID CZ24825671,
+registered office Za Mototechnou 939/23, Stodůlky, 155 00 Prague 5, Czech
+Republic, entered in the Commercial Register kept by the Municipal Court in
+Prague, Section C, Insert 177861; e-mail info@swingingdogs.com
+(the "Licensor").
 
 This agreement is issued by a Czech company. The legally binding text is the
 CZECH ORIGINAL, which follows below the English translation. The English text
@@ -12,144 +16,452 @@ is provided for convenience; where the two differ, the Czech original governs.
 ENGLISH (translation; the Czech original below governs)
 ──────────────────────────────────────────────────────────────────────────
 
-The mailmcp software (the "Software"), including its source code, is the
-Author's copyrighted work. It is distributed as a prebuilt package; on
-request the Author makes the source code available to customers for
-inspection, review and modification for their own installation. THIS IS NOT
-OPEN SOURCE. By installing or using the Software you accept this agreement.
+Introduction
+   This licence agreement (the "Agreement") governs the use of the mailmcp
+   software in any form, including its documentation and updates (the
+   "Software"). The Software is a copyrighted work whose economic rights are
+   exercised by the Licensor. THIS IS NOT OPEN SOURCE. By installing or
+   using the Software the Licensee accepts this Agreement.
 
-1. Grant of license
-   Upon payment of the license fee the Author grants you a non-exclusive,
-   non-transferable license to install and run the Software within the tier
-   purchased:
-   0) Free (no licence key): you may install and run the Software without
-      payment, with at most 2 mailboxes per configuration or user token; every
-      message the Software composes carries the "Sent with mailmcp.ai"
-      signature, which you may not remove or alter. Sections 3, 4 (except
-      4a), 7, 8 and 9 apply to Free use as well.
-   a) Personal: one running installation (one server or one device) for one
-      natural person, including that person's own business, at most
-      5 mailboxes in the configuration or in each user token.
-   b) Unlimited: one running installation in shared-server mode for an
-      unlimited number of users and mailboxes within one organization, team
-      or course; commercial use inside the organization is permitted.
-   Each additional running installation requires an additional license. A
-   license may be moved to another installation at any time as long as you
-   never have more running installations than licenses.
+1. Definitions
+   a) "Licensee" means the natural or legal person who installs or uses the
+      Software or who has acquired a licence to a paid Tier.
+   b) "User" means a natural person who actually uses the Software, in
+      particular through a user token or a configuration.
+   c) "Tier" means the scope of the licence under Article 2 (Free,
+      Personal, Unlimited).
+   d) "Licence Key" means a key issued by the Licensor that determines the
+      Tier of a paid licence.
+   e) "Running Installation" means one separately operated instance of the
+      Software able to serve Users or mailboxes (for example one server, one
+      deployment on a hosting platform or one installation in the Claude
+      Desktop application). Several processes or replicas of the same
+      deployment sharing one configuration form one Running Installation. A
+      temporary instance created solely for an upgrade, a backup or disaster
+      recovery is not another Running Installation unless it is used for
+      regular operation at the same time.
+   f) "Consumer" means a Licensee who is a natural person acting outside the
+      scope of their business or independent profession (Section 419 of the
+      Czech Civil Code).
+   g) "Hosted Service" means the mailmcp.ai service operated by the
+      Licensor.
+   h) "Technical Protection Measures" means technical measures intended to
+      protect the licence, its verification, the Tier limits, the
+      integrity of the Software or access to it.
 
-2. License key
-   The Software requires a license key issued by the Author. The key is
-   verified locally; the Software does not contact the Author. The key is
-   confidential; do not publish or share it beyond the installation it was
-   issued for.
+2. Grant of licence and Tiers
+   2.1 The Licensor grants the Licensee a non-exclusive, non-transferable
+       licence to use the Software within the Tier chosen, without the
+       right to grant sublicences. A licence to a paid Tier arises upon
+       payment of the licence fee; a licence to the Free Tier arises upon
+       installation of the Software.
+   2.2 Free: without a Licence Key and free of charge; each natural person
+       may use at most 2 different mailboxes in total in the Free Tier,
+       across all Running Installations (including the Hosted Service),
+       configurations and user tokens; a mailbox counts once however many
+       tokens contain it. A Free user token created before version 0.7.0
+       keeps the limit it was created with: its User may use up to
+       5 different mailboxes in total; the 2-mailbox total applies to Free
+       tokens and Running Installations created from version 0.7.0 on.
+       Every message the Software composes carries the "Sent with
+       mailmcp.ai" signature under Article 6.
+   2.3 Personal: one Running Installation whose only User is one natural
+       person, with at most 5 different mailboxes in total for that User
+       across all Running Installations, configurations and user tokens; a
+       mailbox counts once however many tokens contain it. It does not
+       matter who owns the mailboxes (the person's own mailboxes, the
+       mailboxes of their business as a sole trader or the mailboxes of a
+       company they work for). Other persons, in particular employees or
+       assistants, may not use the Software under a Personal licence.
+   2.4 Unlimited: one Running Installation in shared-server mode for an
+       unlimited number of Users and mailboxes within one organization. An
+       organization means one legal person, or one natural person carrying
+       on business, together with its employees, the members of its
+       statutory and supervisory bodies and the contractors who work on its
+       behalf for its internal purposes. Commercial use inside the
+       organization is permitted.
+   2.5 Each additional Running Installation of a paid Tier requires an
+       additional licence. A licence may be moved to another Running
+       Installation at any time as long as the Licensee never operates more
+       Running Installations of a paid Tier than they hold licences. The
+       number of Running Installations in the Free Tier is not limited,
+       but the limit of 2 mailboxes per natural person under Article 2.2
+       applies in total across all of them.
+   2.6 Articles 3 and 8 do not apply to the Free Tier.
+   2.7 Through Stripe Managed Payments, Stripe acts as the merchant of
+       record for the relevant transaction and handles payment processing,
+       applicable taxes, receipts/invoices and refunds. The licence to the
+       Software is granted by the Licensor.
 
-3. What you may do
-   You may modify the Software for your own installation and you may read
-   and audit the source code.
+3. Licence Key
+   3.1 The paid Tiers of the Software require a Licence Key issued by the
+       Licensor. The Free Tier does not require a Licence Key.
+   3.2 The Licence Key is verified locally; the Software does not contact
+       the Licensor to verify it.
+   3.3 The Licence Key is confidential. The Licensee may not disclose it to
+       third parties other than persons authorised to administer the
+       Licensee's licensed Running Installations.
 
-4. What you may not do
-   You may not a) run the Software without a valid key or beyond the tier
-   purchased, b) remove, bypass or disable the license verification,
-   c) distribute, sell, rent, sublicense or publish the Software or works
-   derived from it, d) offer the Software to third parties as a service
-   (hosting, SaaS) outside your own organization without a separate
-   agreement with the Author, e) remove copyright notices.
+4. Form of delivery and interference with the Software
+   4.1 The Software is delivered only as a built package (the Licensor's
+       distribution repository and the MCPB package). The Licensor does not
+       provide the source code of the Software and this Agreement creates
+       no obligation to provide it.
+   4.2 The Licensee may use and configure the built package for their
+       licensed Running Installations. The Licensee's employees and
+       contractors may administer the installation on the Licensee's
+       behalf under the same restrictions.
+   4.3 The Licensee may not decompile, reverse-engineer, modify or
+       otherwise interfere with the Software beyond what Section 66 of Act
+       No. 121/2000 Coll., the Czech Copyright Act, permits a lawful user.
+   4.4 The Licensee may not remove, disable or circumvent the licence
+       verification, the Tier limits, the Free Tier signature or the
+       Technical Protection Measures, or publish modified versions of the
+       Software, except where such interference cannot be prohibited under
+       mandatory law (in particular Section 66 of the Czech Copyright
+       Act).
+   4.5 This Agreement does not affect the rights of a lawful user under
+       Section 66 of Act No. 121/2000 Coll., the Czech Copyright Act, in
+       particular the right to correct errors, to study and test the
+       functioning of the Software and to achieve its interoperability.
 
-5. Updates
-   Updates are included up to the next major version (e.g. 0.x → 1.0). A
-   major upgrade may carry a fee; you may keep using older releases.
+5. Prohibited use
+   5.1 The Licensee may not
+       a) use the Software without a valid licence or beyond the Tier
+          acquired;
+       b) distribute, sell, rent, lend, sublicense or publish the Software
+          or works derived from it.
+   5.2 Without a separate written agreement with the Licensor, the Licensee
+       further may not
+       a) use the Software to process mailboxes of third parties as part of
+          a service provided to them (for example as an agency, a managed
+          IT service provider or a call centre);
+       b) make the functionality of the Software available to third
+          parties;
+       c) operate the Software as a hosted or managed service.
+   5.3 Article 5.2 does not restrict the use of the Software for the
+       Licensee's own mailboxes and for the mailboxes of the persons who
+       belong to the Licensee's organization under Article 2.4.
 
-6. Refunds
-   Within 14 days of purchase the Author refunds the full price on request,
-   no questions asked;
-   the license then ends and you must stop using the Software.
+6. Copyright notices and the Free signature
+   6.1 The Licensee may not remove or alter the copyright and authorship
+       notices contained in the Software.
+   6.2 When the Free Tier is used, every message the Software composes
+       carries the "Sent with mailmcp.ai" signature; the Licensee may not
+       remove or alter it. This is a separate obligation that applies to
+       the Free Tier only; the signature is not required when a paid Tier
+       is used.
 
-7. Warranty and liability
-   The Software is provided "as is", without warranty. The Author is not
-   liable for lost profit, lost data or indirect damages; the Author's total
-   liability is limited to the fees you paid for the license in the most
-   recent twelve months. The Software operates on your mail accounts; you
-   are responsible for passwords, permissions and the content of messages
-   sent.
+7. Updates
+   The licence includes free updates within the same major version number.
+   For example, a licence purchased for version 1.x includes 1.x updates but
+   need not include version 2.0. A licence purchased for version 0.x
+   includes 0.x updates. An upgrade to a new major version may carry a fee;
+   the Licensee may continue to use the versions the licence covers. This
+   does not affect updates the Licensor is required to provide under
+   mandatory law.
 
-8. Termination
-   The license ends upon breach; you must uninstall and stop using the
-   Software. Sections 4, 7 and 9 survive termination.
+8. Refunds
+   8.1 Within 14 days of each new purchase the Licensor refunds the full
+       price of that purchase at the Licensee's request, without giving
+       reasons and regardless of any statutory right of withdrawal. A new
+       purchase means the first purchase of a licence, a paid upgrade to a
+       new major version and the purchase of additional seats or licences.
+       Requests go to info@swingingdogs.com; the refund is processed by
+       Stripe as the merchant of record.
+   8.2 A renewal of an existing licence or subscription is not a new
+       purchase; the entitlement under Article 8.1 does not apply to it.
+   8.3 A refund ends what was acquired by the purchase concerned (the
+       licence, the upgrade or the additional seats); the Licensee must
+       stop using the Licence Key concerned and may continue to use the
+       Software only within the scope that remains or within the Free
+       Tier.
+   8.4 This does not affect a Consumer's statutory right to withdraw from
+       the contract.
 
-9. Governing law
-   This agreement is governed by the laws of the Czech Republic; disputes go
-   to the courts competent for the Author's seat. Consumers keep the rights
-   granted by Czech and EU law, which this agreement does not limit.
+9. Warranty
+   To the maximum extent permitted by law, the Software is provided "as
+   is". This does not affect the Consumer's rights arising from defective
+   performance or any other rights that cannot be excluded or limited by
+   contract.
+
+10. Liability
+   10.1 To the extent that applicable law permits such a limitation, the
+        Licensor is not liable for lost profit, lost data or indirect
+        damage, and the Licensor's total liability is limited to the fees
+        the Licensee paid for the licence in the most recent twelve months.
+   10.2 The limitation under Article 10.1 does not apply to harm to the
+        natural rights of a person or to damage caused intentionally or by
+        gross negligence (Section 2898 of the Czech Civil Code), and it
+        does not apply to Consumers.
+   10.3 The Software operates on the Licensee's mail accounts; the Licensee
+        is responsible for passwords, permissions and the content of
+        messages sent.
+
+11. Termination
+   11.1 If the Licensee materially breaches this Agreement, the Licensor
+        notifies the Licensee of the breach in writing or by e-mail. If the
+        Licensee does not remedy the breach within 14 days of receiving the
+        notice, the licence ends when that period expires.
+   11.2 The Licensor may terminate the licence with immediate effect by
+        written or e-mail notice if the Licensee
+        a) distributes the Software without authorisation;
+        b) publishes unlawfully obtained or reconstructed source code of
+           the Software or a modified version of the Software;
+        c) removes, disables or circumvents the licence verification or
+           the Tier limits; or
+        d) deliberately uses or distributes unauthorised copies of the
+           Software or of Licence Keys.
+   11.3 When the licence ends, the Licensee must stop using the Software
+        and delete all copies of it in any form, including the built
+        packages, except copies kept automatically in backups; the Licensee
+        may not use such copies.
+   11.4 Articles 4.3 and 4.4 (restrictions on interfering with the
+        Software), Article 10 (Liability) and Article 14 (Governing law and
+        disputes) survive the end of the licence.
+   11.5 This does not affect the Consumer's rights that cannot be excluded
+        by contract.
+
+12. Hosted Service
+   The mailmcp.ai Hosted Service is not a licence to the Software; the
+   relationship is governed by the Terms of Service
+   (https://mailmcp.ai/terms).
+
+13. Consumers
+   If the Licensee is a Consumer, nothing in this Agreement limits the
+   rights granted to them by mandatory provisions of Czech or European
+   Union law. A Consumer may turn to the Czech Trade Inspection Authority
+   (Česká obchodní inspekce, https://www.coi.cz) as the body for
+   out-of-court resolution of consumer disputes.
+
+14. Governing law and disputes
+   This Agreement is governed by the laws of the Czech Republic. The choice
+   of law does not deprive a Consumer of the protection afforded by
+   mandatory provisions of the law of the country of their habitual
+   residence. Disputes are decided by the courts of the Czech Republic
+   competent for the Licensor's registered office, unless the law provides
+   otherwise for Consumers.
 
 ──────────────────────────────────────────────────────────────────────────
 ČESKY (rozhodný originál)
 ──────────────────────────────────────────────────────────────────────────
 
-Verze 1.0, 5. 9. 2026. Česká verze je rozhodná; anglický text výše je překlad.
-Autor: Jiří Dolejš, https://jiridolejs.cz (dále „Autor“)
+Verze 1.1 ze dne 29. 9. 2026.
+Česká verze je rozhodná; anglický text výše je překlad.
+Poskytovatel: Swinging Dogs s.r.o., IČO 24825671, DIČ CZ24825671, se sídlem
+Za Mototechnou 939/23, Stodůlky, 155 00 Praha 5, zapsaná v obchodním
+rejstříku vedeném Městským soudem v Praze, oddíl C, vložka 177861;
+e-mail info@swingingdogs.com (dále „Poskytovatel“).
 
-Software mailmcp (dále „Software“) včetně zdrojového kódu je dílem Autora a je
-chráněn autorským právem. Šíří se jako předpřipravená distribuce; zdrojový
-kód Autor zákazníkům na vyžádání zpřístupní k nahlédnutí, prověření a úpravám
-pro vlastní instalaci. NEJEDNÁ SE O OPEN SOURCE. Instalací nebo použitím
-Softwaru přijímáte tuto smlouvu.
+Úvodní ustanovení
+   Tato licenční smlouva (dále „Smlouva“) upravuje užití softwaru mailmcp
+   v jakékoli podobě včetně jeho dokumentace a aktualizací (dále
+   „Software“). Software je dílo chráněné autorským právem, k němuž
+   vykonává majetková práva Poskytovatel. NEJEDNÁ SE O OPEN SOURCE.
+   Instalací nebo užitím Softwaru Nabyvatel tuto Smlouvu přijímá.
 
-1. Udělení licence
-   Po zaplacení licenčního poplatku vám Autor uděluje nevýhradní, nepřenosnou
-   licenci k instalaci a provozu Softwaru v rozsahu zakoupené úrovně:
-   0) Free (bez licenčního klíče): Software smíte instalovat a provozovat bez
-      platby, nejvýše s 2 schránkami v konfiguraci nebo v uživatelském tokenu;
-      každá zpráva, kterou Software sestaví, nese podpis „Sent with
-      mailmcp.ai“, který nesmíte odstranit ani změnit. Články 3, 4 (kromě
-      4a), 7, 8 a 9 platí i pro použití Free.
-   a) Personal: jedna běžící instalace (jeden server nebo jedno zařízení) pro
-      jednu fyzickou osobu včetně jejího vlastního podnikání, nejvýše
-      5 poštovních schránek v konfiguraci nebo v každém uživatelském tokenu.
-   b) Unlimited: jedna běžící instalace v režimu sdíleného serveru pro
-      neomezený počet uživatelů a schránek v rámci jedné organizace, týmu
-      nebo kurzu; komerční použití uvnitř organizace je dovoleno.
-   Každá další běžící instalace vyžaduje další licenci. Licenci lze kdykoli
-   přenést na jinou instalaci, pokud tím nevzniká více běžících instalací,
-   než kolik licencí máte.
+1. Pojmy
+   a) „Nabyvatel“ je fyzická nebo právnická osoba, která Software instaluje
+      nebo užívá nebo která nabyla licenci k placené Úrovni.
+   b) „Uživatel“ je fyzická osoba, která Software skutečně užívá, zejména
+      prostřednictvím uživatelského tokenu nebo konfigurace.
+   c) „Úroveň“ je rozsah licence podle článku 2 (Free, Personal,
+      Unlimited).
+   d) „Licenční klíč“ je klíč vydaný Poskytovatelem, který určuje Úroveň
+      placené licence.
+   e) „Běžící instalace“ je jedna samostatně provozovaná instance Softwaru
+      schopná obsluhovat Uživatele nebo poštovní schránky (například jeden
+      server, jedno nasazení na hostingové platformě nebo jedna instalace
+      v aplikaci Claude Desktop). Více procesů nebo replik téhož nasazení se
+      společnou konfigurací tvoří jednu Běžící instalaci. Dočasná instance
+      vytvořená výhradně pro aktualizaci, zálohu nebo obnovu po havárii není
+      další Běžící instalací, pokud se současně nepoužívá k běžnému provozu.
+   f) „Spotřebitel“ je Nabyvatel, který je fyzickou osobou a jedná mimo
+      rámec své podnikatelské činnosti nebo samostatného výkonu svého
+      povolání (§ 419 občanského zákoníku).
+   g) „Hostovaná služba“ je služba mailmcp.ai provozovaná Poskytovatelem.
+   h) „Technická ochranná opatření“ jsou technická opatření určená
+      k ochraně licence, jejího ověřování, omezení Úrovní, integrity
+      Softwaru nebo přístupu k němu.
 
-2. Licenční klíč
-   Software vyžaduje licenční klíč vydaný Autorem. Klíč se ověřuje lokálně a
-   Software se s Autorem nespojuje. Klíč je důvěrný; nesmíte ho zveřejnit ani
-   sdílet mimo instalaci, pro kterou byl vydán.
+2. Udělení licence a Úrovně
+   2.1 Poskytovatel uděluje Nabyvateli nevýhradní, nepřevoditelnou licenci
+       k užití Softwaru v rozsahu zvolené Úrovně, bez oprávnění udělit
+       podlicenci. Licence k placené Úrovni vzniká zaplacením licenčního
+       poplatku; licence k Úrovni Free vzniká instalací Softwaru.
+   2.2 Free: bez Licenčního klíče a bez úplaty; každá fyzická osoba smí
+       v Úrovni Free užívat nejvýše 2 různé poštovní schránky celkem, a to
+       napříč všemi Běžícími instalacemi (včetně Hostované služby),
+       konfiguracemi a uživatelskými tokeny; schránka se počítá jednou bez
+       ohledu na počet tokenů, v nichž je uvedena. Uživatelský token Free
+       vytvořený před verzí 0.7.0 si ponechává limit, se kterým byl
+       vytvořen: jeho Uživatel smí užívat nejvýše 5 různých schránek
+       celkem; limit 2 schránek celkem platí pro tokeny a Běžící instalace
+       Free vytvořené od verze 0.7.0. Každá zpráva, kterou Software
+       sestaví, nese podpis „Sent with mailmcp.ai“ podle článku 6.
+   2.3 Personal: jedna Běžící instalace, jejímž jediným Uživatelem je jedna
+       fyzická osoba, nejvýše s 5 různými poštovními schránkami celkem pro
+       tohoto Uživatele, a to napříč všemi Běžícími instalacemi,
+       konfiguracemi a uživatelskými tokeny; schránka se počítá jednou bez
+       ohledu na počet tokenů, v nichž je uvedena. Nezáleží na tom, komu
+       schránky patří (vlastní schránky této osoby, schránky jejího
+       podnikání jako podnikající fyzické osoby nebo schránky společnosti,
+       pro kterou pracuje). Jiné osoby, zejména zaměstnanci nebo asistenti,
+       nesmějí Software v rámci licence Personal užívat.
+   2.4 Unlimited: jedna Běžící instalace v režimu sdíleného serveru pro
+       neomezený počet Uživatelů a schránek v rámci jedné organizace.
+       Organizací se rozumí jedna právnická osoba nebo jedna podnikající
+       fyzická osoba spolu se svými zaměstnanci, členy svého statutárního
+       a dozorčího orgánu a smluvními spolupracovníky, kteří pro ni pracují
+       jejím jménem pro její vnitřní potřeby. Komerční užití uvnitř
+       organizace je dovoleno.
+   2.5 Každá další Běžící instalace placené Úrovně vyžaduje další licenci.
+       Licenci lze kdykoli přenést na jinou Běžící instalaci, pokud
+       Nabyvatel v žádném okamžiku neprovozuje více Běžících instalací
+       placené Úrovně, než kolik licencí má. Počet Běžících instalací
+       v Úrovni Free omezen není, limit 2 schránek na fyzickou osobu podle
+       článku 2.2 však platí celkem napříč všemi z nich.
+   2.6 Na Úroveň Free se nevztahují články 3 a 8.
+   2.7 Stripe prostřednictvím služby Stripe Managed Payments vystupuje ve
+       vztahu k příslušné transakci jako merchant of record a zajišťuje
+       zpracování platby, příslušné daně, doklady a refundace. Licenci
+       k Softwaru uděluje Poskytovatel.
 
-3. Co je dovoleno
-   Smíte Software upravit pro vlastní instalaci a smíte zdrojový kód číst a
-   prověřovat.
+3. Licenční klíč
+   3.1 Placené Úrovně Softwaru vyžadují Licenční klíč vydaný Poskytovatelem.
+       Úroveň Free Licenční klíč nevyžaduje.
+   3.2 Licenční klíč se ověřuje lokálně; Software se kvůli ověření
+       s Poskytovatelem nespojuje.
+   3.3 Licenční klíč je důvěrný. Nabyvatel ho nesmí zpřístupnit třetím
+       osobám s výjimkou osob pověřených správou jeho licencovaných
+       Běžících instalací.
 
-4. Co je zakázáno
-   Nesmíte a) provozovat Software bez platného klíče nebo nad rámec zakoupené
-   úrovně, b) odstranit, obejít nebo znefunkčnit ověřování licence,
-   c) Software nebo jeho odvozeniny šířit, prodávat, pronajímat, sublicencovat
-   nebo zveřejnit, d) nabízet Software třetím osobám jako službu (hosting,
-   SaaS) mimo vlastní organizaci bez samostatné smlouvy s Autorem,
-   e) odstranit oznámení o autorství.
+4. Forma dodání a zásahy do Softwaru
+   4.1 Software se dodává pouze jako sestavený balíček (distribuční
+       repozitář Poskytovatele a balíček MCPB). Poskytovatel zdrojový kód
+       Softwaru neposkytuje a tato Smlouva ho k jeho poskytnutí
+       nezavazuje.
+   4.2 Nabyvatel smí sestavený balíček užívat a konfigurovat pro své
+       licencované Běžící instalace. Správu instalace mohou jeho jménem
+       vykonávat jeho zaměstnanci a smluvní spolupracovníci za stejných
+       omezení.
+   4.3 Nabyvatel nesmí Software dekompilovat, zpětně analyzovat, upravovat
+       ani do něj jinak zasahovat nad rámec, který oprávněnému uživateli
+       dovoluje § 66 zákona č. 121/2000 Sb., autorského zákona.
+   4.4 Nabyvatel nesmí odstranit, vyřadit z činnosti ani obejít ověřování
+       licence, omezení Úrovní, podpis Úrovně Free ani Technická ochranná
+       opatření a nesmí zveřejnit upravené verze Softwaru, s výjimkou
+       případů, kdy takový zásah nelze podle kogentních právních předpisů
+       zakázat (zejména § 66 autorského zákona).
+   4.5 Práva oprávněného uživatele podle § 66 zákona č. 121/2000 Sb.,
+       autorského zákona, zejména právo opravovat chyby, zkoumat a zkoušet
+       funkčnost Softwaru a dosáhnout jeho interoperability, nejsou touto
+       Smlouvou dotčena.
 
-5. Aktualizace
-   Aktualizace jsou v ceně až do další hlavní verze (např. 0.x → 1.0). Hlavní
-   upgrade může být zpoplatněn; starší vydání můžete používat dál.
+5. Zakázané užití
+   5.1 Nabyvatel nesmí
+       a) užívat Software bez platné licence nebo nad rámec nabyté Úrovně;
+       b) Software nebo díla z něj odvozená šířit, prodávat, pronajímat,
+          půjčovat, sublicencovat nebo zveřejnit.
+   5.2 Bez samostatné písemné smlouvy s Poskytovatelem Nabyvatel dále nesmí
+       a) užívat Software ke zpracování poštovních schránek třetích osob
+          v rámci služby, kterou jim poskytuje (například jako agentura,
+          poskytovatel spravovaných IT služeb nebo call centrum);
+       b) zpřístupnit funkce Softwaru třetím osobám;
+       c) provozovat Software jako hostovanou nebo spravovanou službu.
+   5.3 Článek 5.2 neomezuje užití Softwaru pro vlastní poštovní schránky
+       Nabyvatele a pro schránky osob, které podle článku 2.4 patří k jeho
+       organizaci.
 
-6. Vrácení peněz
-   Do 14 dnů od nákupu vrátí Autor na požádání celou cenu bez udání důvodu;
-   po vrácení licence
-   zaniká a Software musíte přestat používat.
+6. Oznámení o autorství a podpis Úrovně Free
+   6.1 Nabyvatel nesmí odstranit ani změnit oznámení o autorských právech
+       a o autorství obsažená v Softwaru.
+   6.2 Při užití Úrovně Free nese každá zpráva, kterou Software sestaví,
+       podpis „Sent with mailmcp.ai“; Nabyvatel ho nesmí odstranit ani
+       změnit. Jde o samostatnou povinnost, která platí pouze pro Úroveň
+       Free; při užití placené Úrovně se podpis nevyžaduje.
 
-7. Záruka a odpovědnost
-   Software je poskytován „tak, jak je“, bez záruk. Autor neodpovídá za ušlý
-   zisk, ztrátu dat ani nepřímé škody; celková odpovědnost Autora je omezena
-   částkou, kterou jste za licenci zaplatili v posledních dvanácti měsících.
-   Software pracuje s vašimi poštovními účty; za správu hesel, oprávnění a
-   obsah odeslaných zpráv odpovídáte vy.
+7. Aktualizace
+   Licence zahrnuje bezplatné aktualizace v rámci stejného hlavního čísla
+   verze. Například licence zakoupená pro verzi 1.x zahrnuje aktualizace
+   1.x, ale nemusí zahrnovat verzi 2.0. Licence zakoupená pro verzi 0.x
+   zahrnuje aktualizace 0.x. Přechod na novou hlavní verzi může být
+   zpoplatněn; verze, na které se licence vztahuje, smí Nabyvatel užívat
+   i nadále. Tím nejsou dotčeny aktualizace, které je Poskytovatel povinen
+   poskytnout podle kogentních právních předpisů.
 
-8. Ukončení
-   Při porušení smlouvy licence zaniká; musíte Software odinstalovat a
-   přestat používat. Ustanovení 4, 7 a 9 platí i po ukončení.
+8. Vrácení peněz
+   8.1 Do 14 dnů od každého nového nákupu vrátí Poskytovatel Nabyvateli
+       na jeho žádost celou cenu tohoto nákupu, a to bez udání důvodu a bez
+       ohledu na případné zákonné právo na odstoupení od smlouvy. Novým
+       nákupem se rozumí první nákup licence, placený přechod na novou
+       hlavní verzi a nákup dalších míst nebo licencí. Žádost se zasílá na
+       e-mail info@swingingdogs.com; vrácení platby provede Stripe jako
+       prodejce záznamu.
+   8.2 Obnova existující licence nebo předplatného není novým nákupem;
+       nárok podle odstavce 8.1 se na ni nevztahuje.
+   8.3 Vrácením ceny zaniká to, co bylo příslušným nákupem nabyto
+       (licence, přechod na novou hlavní verzi nebo další místa); Nabyvatel
+       musí přestat užívat příslušný Licenční klíč a Software smí dále
+       užívat jen v rozsahu, který mu zůstal, nebo v rozsahu Úrovně Free.
+   8.4 Tím není dotčeno zákonné právo Spotřebitele na odstoupení od
+       smlouvy.
 
-9. Rozhodné právo
-   Smlouva se řídí právem České republiky. Spory řeší soudy příslušné podle
-   sídla Autora. Spotřebitelé mají práva podle českého a evropského práva,
-   která tato smlouva neomezuje.
+9. Záruka
+   V maximálním rozsahu dovoleném právními předpisy je Software poskytován
+   „tak, jak je“. Tím nejsou dotčena práva Spotřebitele z vadného plnění
+   ani jiná práva, která nelze smluvně vyloučit nebo omezit.
+
+10. Odpovědnost
+   10.1 V rozsahu, v jakém takové omezení dovolují použitelné právní
+        předpisy, Poskytovatel neodpovídá za ušlý zisk, ztrátu dat ani
+        nepřímé škody a jeho celková odpovědnost je omezena částkou, kterou
+        Nabyvatel za licenci zaplatil v posledních dvanácti měsících.
+   10.2 Omezení podle odstavce 10.1 se nepoužije na újmu na přirozených
+        právech člověka ani na škodu způsobenou úmyslně nebo z hrubé
+        nedbalosti (§ 2898 občanského zákoníku) a nepoužije se vůči
+        Spotřebiteli.
+   10.3 Software pracuje s poštovními účty Nabyvatele; za správu hesel,
+        oprávnění a obsah odeslaných zpráv odpovídá Nabyvatel.
+
+11. Ukončení licence
+   11.1 Poruší-li Nabyvatel tuto Smlouvu podstatným způsobem, Poskytovatel
+        ho na porušení upozorní písemně nebo e-mailem. Neodstraní-li
+        Nabyvatel porušení do 14 dnů od doručení upozornění, licence
+        uplynutím této lhůty zaniká.
+   11.2 Poskytovatel může licenci ukončit s okamžitou účinností písemným
+        nebo e-mailovým oznámením, jestliže Nabyvatel
+        a) Software neoprávněně šíří;
+        b) zveřejní neoprávněně získaný nebo rekonstruovaný zdrojový kód
+           Softwaru nebo jeho upravenou verzi;
+        c) odstraní, vyřadí z činnosti nebo obejde ověřování licence nebo
+           omezení Úrovní; nebo
+        d) úmyslně užívá nebo šíří neoprávněné kopie Softwaru nebo
+           Licenčních klíčů.
+   11.3 Po zániku licence musí Nabyvatel přestat Software užívat a smazat
+        všechny jeho kopie v jakékoli podobě včetně sestavených balíčků,
+        s výjimkou kopií automaticky uchovaných v zálohách; tyto kopie nesmí
+        užívat.
+   11.4 Zánikem licence nezanikají odstavce 4.3 a 4.4 (omezení zásahů do
+        Softwaru), článek 10 (Odpovědnost) a článek 14 (Rozhodné právo
+        a spory).
+   11.5 Tím nejsou dotčena práva Spotřebitele, která nelze smluvně
+        vyloučit.
+
+12. Hostovaná služba
+   Hostovaná služba mailmcp.ai není licencí k Softwaru; vztah se řídí
+   Obchodními podmínkami služby (https://mailmcp.ai/terms).
+
+13. Spotřebitelé
+   Je-li Nabyvatel Spotřebitelem, nic v této Smlouvě neomezuje práva, která
+   mu přiznávají kogentní ustanovení českého práva nebo práva Evropské
+   unie. Spotřebitel se může obrátit na Českou obchodní inspekci
+   (https://www.coi.cz) jako subjekt mimosoudního řešení spotřebitelských
+   sporů.
+
+14. Rozhodné právo a spory
+   Smlouva se řídí právem České republiky. Volba práva nezbavuje
+   Spotřebitele ochrany, kterou mu poskytují kogentní ustanovení práva
+   státu jeho obvyklého bydliště. Spory rozhodují soudy České republiky
+   příslušné podle sídla Poskytovatele, nestanoví-li právní předpisy pro
+   Spotřebitele jinak.

@@ -13,7 +13,7 @@
   <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkojott%2Fmailmcp-dist&env=MAILMCP_KEY,MAILMCP_LICENSE,MAILMCP_INVITE_CODE&envDescription=MAILMCP_KEY%3A%2032%20random%20bytes%20as%20base64url.%20MAILMCP_LICENSE%3A%20your%20key%2C%20or%20empty%20for%20the%20free%20tier.%20MAILMCP_INVITE_CODE%3A%20the%20code%20your%20users%20type%20on%20%2Fsetup.&envLink=https%3A%2F%2Fmailmcp.ai%2Fstart&project-name=mailmcp&repository-name=mailmcp"><img src="https://vercel.com/button" alt="Deploy with Vercel"></a>
 </p>
 
-mailmcp is a self-hosted MCP server that gives ChatGPT, Claude and other MCP clients access to your e-mail over IMAP and SMTP: several mailboxes at once, any provider, attachments in both directions. This repository is the **prebuilt distribution** (minified bundles in `dist/`, no build step) under a commercial licence; it runs as a free tier without a key, and the source code is available to customers on request.
+mailmcp is a self-hosted MCP server that gives ChatGPT, Claude and other MCP clients access to your e-mail over IMAP and SMTP: several mailboxes at once, any provider, attachments in both directions. This repository is the **prebuilt distribution** (minified bundles in `dist/`, no build step) under a commercial licence; it runs as a free tier without a key. The source code is not provided.
 
 Ask *"What came in from accounting this week?"* and get one answer across Gmail, iCloud and the company mail server: the invoice as a download link, a reply already drafted.
 
@@ -119,7 +119,7 @@ Every tool is listed to the client; a call the token does not permit fails with 
 
 | Free | Personal, €19 once | Unlimited, €149 once |
 | --- | --- | --- |
-| All tools included, up to 2 mailboxes per token (tokens created before 0.7.0 keep 5). Every message the assistant composes (drafts, sends, forwards) ends with "Sent with mailmcp.ai". | One person, up to 5 mailboxes per token, no signature, on your own server or in Claude Desktop. | One server for the whole company, unlimited users and mailboxes. |
+| All tools included, up to 2 mailboxes in total per person (the server checks 2 per token; tokens created before 0.7.0 keep 5). Every message the assistant composes (drafts, sends, forwards) ends with "Sent with mailmcp.ai". | One user, up to 5 mailboxes in total whoever owns them, no signature, on your own server or in Claude Desktop. | One server for one organization (a company or a sole trader and its employees), unlimited users and mailboxes. |
 
 All 0.x updates are included; a 1.0 upgrade may carry a fee, and 0.x keeps working. 14-day refund, no questions asked. Company deployment, €990: two hours of online onboarding on your Vercel or cloud, Unlimited licence included. Buy at [mailmcp.ai/pricing](https://mailmcp.ai/pricing): the key appears right after payment and Stripe e-mails the invoice.
 
@@ -141,8 +141,8 @@ Releases are tagged here and listed in [`CHANGELOG.md`](CHANGELOG.md). If you de
 
 ## Licence, support, reporting problems
 
-The licence agreement is in [`LICENSE`](LICENSE) (English translation first, the Czech original governs): one key, one running installation, no redistribution; removing the licence check or the free-tier signature is prohibited. This is closed-source software, so pull requests are not accepted, but bug reports in [Issues](https://github.com/kojott/mailmcp-dist/issues) are welcome. Security problems: write to info@swingingdogs.com instead of opening an issue. Privacy policy: https://mailmcp.ai/privacy, terms: https://mailmcp.ai/terms.
+The licence agreement is in [`LICENSE`](LICENSE) (English translation first, the Czech original governs): one key, one running installation, no redistribution, no serving other people's mailboxes or running mailmcp as a hosted service without a separate agreement; removing the licence check or the free-tier signature is prohibited. This is closed-source software, so pull requests are not accepted, but bug reports in [Issues](https://github.com/kojott/mailmcp-dist/issues) are welcome. Security problems: write to info@swingingdogs.com instead of opening an issue. Privacy policy: https://mailmcp.ai/privacy, terms: https://mailmcp.ai/terms.
 
 Guide for people: [mailmcp.ai/docs](https://mailmcp.ai/docs). Guide for assistants, paste the link into ChatGPT or Claude and let it walk you through: [mailmcp.ai/llms.txt](https://mailmcp.ai/llms.txt). Support: [jiridolejs.cz/kontakt](https://jiridolejs.cz/kontakt).
 
-<sub>Version 0.8.3. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>
+<sub>Version 0.9.0. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>

@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.9.0 (2026-09-29)
+
+### Before you upgrade (self-hosted operators)
+
+- Every server that issues user tokens without a licence key (free tier) now enforces **10 sends per hour per mailbox** itself. This is not limited to mailmcp.ai: your own copy running Free in token mode (the one-click Vercel deploy without `MAILMCP_LICENSE`) gets the same ceiling. It applies to tokens already issued: a token whose configuration sets a higher `policy.send_rate_per_hour` is clamped to 10 from the first request after the update, without being re-created; the refusal reads "Send rate limit reached (10/hour, free tier ceiling)". Servers with a Personal or Unlimited key are unchanged: the configuration's rate applies. Owner mode and Claude Desktop (`.mcpb`) keep the configured rate.
+- mailmcp.ai subscription keys do not license your own server: `MAILMCP_LICENSE` refuses them and `/setup` on your server has no field for them. Buy Personal or Unlimited for your own server.
+
+- Licence agreement 1.1 (draft pending the owner's approval): Swinging Dogs s.r.o. is the licensor; Personal is one Running Installation for one user whoever owns the mailboxes, Unlimited one organization and its employees; serving other people's mailboxes or running mailmcp as a hosted service needs a separate agreement; the software ships as the built package only; licences are sold through Stripe as merchant of record; the 14-day refund covers each new purchase (not renewals); updates within the same major version; a material breach gets 14 days to cure; consumer rights are carved out clause by clause. The mailmcp.ai subscription is governed by https://mailmcp.ai/terms, not by the EULA.
+
+- Terms of service rewritten (Czech binding): operator identity, Stripe as merchant of record, subscription seats, renewals and refunds per new purchase, suspension and termination, consumer carve-outs, how changes are announced; the privacy policy now lists the technical logs and in-memory data the server keeps.
+
+### mailmcp.ai subscription
+
+- New plan on the hosted service mailmcp.ai: **€49 per person per year**, bought for any number of seats (up to 50 in one checkout). Each seat gets its own subscription key: up to 10 mailboxes per token, no "Sent with mailmcp.ai" signature, 50 sends per hour per mailbox, one send quota per seat whichever token carries the key. The quota counts per mailbox address (renaming a mailbox in a new token does not reset it) and a seat sends at most 500 messages per hour in total. A token whose configuration leaves the send rate at the default of 10 gets the 50; `/setup` fills in 50 when a valid key is entered and 10 again when it is removed. A lower rate you set yourself stays.
+- Keys are issued for paid invoice periods only and expire 30 days after the paid period ends. They arrive by e-mail and on `/claim` after checkout; every yearly renewal (Stripe charges automatically) e-mails new keys, and "Send my keys again" on `/claim` re-sends the current ones to the purchase address, throttled per address and per IP. The Stripe customer portal (card, invoices, cancellation) is linked from `/claim` and from the e-mails.
+- Key e-mails (one-time licence keys and subscription keys: purchase, renewal, re-send) are in one language: English, or Czech when the purchase started on the Czech version of the site (the Stripe checkout page follows). Dates read "29 October 2027" / "29. října 2027" and the support contact is info@swingingdogs.com.
+- `/setup` on mailmcp.ai has a subscription key field, shows the subscription's limits, and replaces the key of an existing token without the edit password (**Replace the subscription key only**, `/api/relicense`). `/api/unseal` also returns the key sealed in a token (token and edit password required, as before).
+- `list_accounts` returns `plan`: the tier, the key's expiry and, within 30 days of it or after it, how to renew. When a key expires, a token with up to 2 mailboxes keeps working on the Free rules (signature, 10 sends per hour). A token with 3 to 10 mailboxes is refused at `/mcp` and at the OAuth sign-in, with a message that names the expiry date and the renewal steps. Either way the mailboxes stay in the token and work again once a new key is pasted in.
+- Refunded, disputed or leaked subscription keys are revoked with `MAILMCP_REVOKED` (whole subscriptions or single seats) on the next deploy.
+- `/pricing`, `/docs`, `/llms.txt`, `/terms`, `/privacy` and the EULA describe the subscription, only on the hosted service.
+- Stripe webhook: refusals that will never succeed (revoked, cancelled or ended subscriptions) answer 200 so Stripe stops retrying; a renewal that is not paid yet stays retriable.
+
+### Fixes
+
+- The send-rate limiters no longer reset every quota at once past 5 000 tokens: the oldest per-token entry is evicted instead. Subscription seat quotas are kept apart, so new tokens never evict them.
+- Subscription keys stay valid across a new major version; the major-version check applies to Personal and Unlimited keys only.
+
 ## 0.8.3 (2026-09-25)
 
 - `get_attachment` with `save_to` (Claude Desktop, Claude Code) saves files up to `policy.max_download_bytes` (25 MB by default, like HTTP download links) instead of stopping at `policy.max_attachment_bytes` (2 MB). The 2 MB cap is meant for content pasted into the conversation; a file written to disk never enters it.
