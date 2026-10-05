@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.1 (2026-10-05)
+
+- `unsubscribe` is now marked `destructiveHint: true`: an executed unsubscribe cannot be undone from mailmcp, so assistants ask before running it. The default dry run is unchanged and changes nothing.
+- **ChatGPT:** Settings → Connectors → mailmcp → Refresh to load the updated tool hints.
+
 ## 0.13.0 (2026-10-05)
 
 The first release since 0.9.0. It brings together the work built as 0.9.1 (usage statistics), 0.10 (triage and bulk clean-up), 0.11 (follow-ups, snooze, templates, confirmed sends, unsubscribe), 0.12 (the clickable inbox) and 0.13 (protection levels for verification emails); none of those was released on its own. Tools: 21 → 33.
