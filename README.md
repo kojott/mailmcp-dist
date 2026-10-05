@@ -70,7 +70,10 @@ Behind a reverse proxy set `MAILMCP_PUBLIC_URL` or `MAILMCP_TRUST_PROXY=1`. Comp
 | `MAILMCP_MS_DISABLED` | `1` hides the Microsoft sign-in and answers 404 on every `/api/ms/*` route. |
 | `MAILMCP_DISABLE_GRAPH` | `1` refuses Outlook mailboxes at runtime, including in tokens already issued. |
 | `MAILMCP_ATTACHMENT_DIRS` | stdio only: folders (separated by `:` on macOS/Linux, `;` on Windows) where attachments may be saved and read, in addition to `policy.attachment_dirs`. Claude Desktop sets them in the extension settings. |
-| `MAILMCP_NO_UPDATE_CHECK` | `1` stops the Claude Desktop build from asking GitHub for the latest release on start. |
+| `MAILMCP_NO_STATS` | `1` switches the usage statistics off; the daily update check stays (a `GET /api/version` without content). |
+| `MAILMCP_STATS` | Server copies: `0`/`false`/`off`/`no` switches the statistics off, like `MAILMCP_NO_STATS=1`. Claude Desktop and other desktop (stdio) copies: `1`/`true`/`on`/`yes` switches them on (the extension setting "Anonymous usage statistics" writes it); empty or unset leaves them off. |
+| `MAILMCP_NO_UPDATE_CHECK` | `1` sends no request to mailmcp.ai at all: no update check and no statistics. |
+| `DO_NOT_TRACK` | `1`/`true` switches the statistics off, like `MAILMCP_NO_STATS=1`. |
 | `MAILMCP_PUBLIC_URL` | The public address, when the server is behind your own reverse proxy. |
 | `MAILMCP_ALLOW_PRIVATE_MAIL_HOSTS` | `1` lets user tokens name mail servers on private addresses. |
 
@@ -98,22 +101,36 @@ Every tool is gated by the permissions in the token, per mailbox:
 
 | Permission | Tools |
 | --- | --- |
-| read (default) | `list_accounts`, `list_folders`, `search_messages` (Gmail syntax on Gmail), `get_message`, `get_thread`, `get_attachment` (one-hour download link), ChatGPT `search`/`fetch` |
-| draft | `create_draft`, `upload_attachment`, `request_upload` (a one-hour upload link the assistant fills itself) |
-| send | `send_message`, `send_draft`, `forward_message`, only to addresses on your allowlist |
-| modify | `modify_message` (flags, folders) |
-| delete | `trash_message`; nothing is ever deleted permanently |
+| read (default) | `list_accounts`, `list_folders`, `search_messages` (Gmail syntax on Gmail), `get_message`, `get_thread`, `get_attachment` (one-hour download link), ChatGPT `search`/`fetch`, `triage`, `awaiting_replies`, `digest`, `list_followups`, `list_templates`, `unsubscribe` (dry run; sending the one-click request needs the separate `unsubscribe` permission, off by default) |
+| draft | `create_draft`, `reply_draft`, `save_template`, `set_signature`, `upload_attachment`, `request_upload` (a one-hour upload link the assistant fills itself) |
+| send | `send_message`, `reply_send`, `send_draft`, `forward_message`, only to addresses on your allowlist; optionally only after you confirm in your app's dialog |
+| modify | `modify_message` (flags, folders), `bulk_preview` / `bulk_apply` (bulk archive, mark read, label, move; a preview first, then exactly those messages), `set_followup`, `snooze`, `wake_snoozed` |
+| delete | `trash_message` and bulk trash; nothing is ever deleted permanently |
+
+Each mailbox also has a **protection level** for verification emails (Off, Basic, Standard, Strict, Custom; new mailboxes start at Standard): hidden mail stays out of every answer, and from Standard up codes and sign-in links in other mail are removed. It catches typical verification emails, not every possible one. Where your app supports MCP Apps, `triage`, `digest`, the draft tools and `bulk_preview` also show a clickable panel; switch the panels off per token on the setup page (or `MAILMCP_UI=off` over stdio).
 
 Every tool is listed to the client; a call the token does not permit fails with an error naming the missing permission.
 
 ## Security and data flow
 
 - **Credentials.** The setup page encrypts mailbox passwords in your browser into a split-key token. The server holds one master key, decrypts the configuration only while serving your request, keeps it in memory for at most 15 minutes after the last one, and has no database and no copy of your mail.
-- **What leaves the server.** IMAP/SMTP traffic to your mail provider and tool results to your assistant (so the AI vendor sees the results of every tool call, never the passwords). Licence verification is offline. The only links to the vendor are the Buy buttons.
+- **What leaves the server.** IMAP/SMTP traffic to your mail provider and tool results to your assistant (so the AI vendor sees the results of every tool call, never the passwords). Licence verification is offline. The only request to the vendor is the daily update check with the usage statistics described below, and the Buy buttons link to the vendor.
 - **Prompt injection.** Message bodies are marked as untrusted data, hidden text is stripped and header fields are sanitized, which reduces the risk of instructions planted in an e-mail; it cannot make a model immune.
 - **Protocol.** OAuth 2.1 with PKCE, dynamic client registration and client metadata documents, encrypted tokens with replay guards, login throttling. Read-only defaults, send allowlists, no permanent deletion.
 - **Revocation.** Delete the app password at your provider; the token is then useless no matter who holds it. Outlook mailboxes carry a Microsoft refresh token instead of a password: revoke the app at [account.live.com/consent/Manage](https://account.live.com/consent/Manage) or in My Apps for work accounts. Rotating `MAILMCP_KEY` invalidates all tokens on a server.
 - **Review.** An internal, AI-assisted security review of version 0.4.1 (September 2026) with every finding, fix and accepted trade-off is public: [mailmcp.ai/audit](https://mailmcp.ai/audit).
+
+## Usage statistics
+
+Once a day (at most) every copy asks mailmcp.ai whether a newer version exists; Claude Desktop asks at each start. Server copies (Vercel production, Docker, Node) also send usage statistics with that request unless you switch them off; Claude Desktop and other desktop (stdio) copies send them only if you turn them on, and at most once a day however often they start. The whole body is:
+
+```json
+{"s":1,"v":"0.13","r":"docker","d":"…"}
+```
+
+`s` is the schema, `v` the version as major.minor, `r` the runtime (`vercel`, `docker`, `node`, `claude-desktop` or `stdio`), and `d` a number that stays the same for one calendar month, computed from values that never leave your server (the Vercel project id, elsewhere the machine id or a random salt the copy writes once to `~/.mailmcp/stats-salt`, mixed with `MAILMCP_KEY` when it is set; `~/.mailmcp/stats-sent-*` holds the day of each instance's last ping). No licence key, configuration, address, mailbox or content is sent. mailmcp.ai keeps only daily and monthly counts per version and per runtime; from what it stores it cannot tell which installation sent a request. Our host Vercel logs the IP address of every request for 1 day, as for any website; our code never stores it. Vercel preview deployments send only the update check; CI runs and builds from source send nothing. Every copy logs one line at start saying whether statistics are ON or OFF.
+
+Switches (`1`, `true`, `yes` or `on`): `MAILMCP_NO_STATS=1` or `MAILMCP_STATS=0` (statistics off, the update check stays), `MAILMCP_NO_UPDATE_CHECK=1` (no request at all), `DO_NOT_TRACK=1` (statistics off). In Claude Desktop: the extension settings “Anonymous usage statistics” (off by default) and “Check for updates” (unticked, nothing is sent). Everything collected and the totals are public at [mailmcp.ai/stats](https://mailmcp.ai/stats).
 
 ## Pricing
 
@@ -126,6 +143,8 @@ All 0.x updates are included; a 1.0 upgrade may carry a fee, and 0.x keeps worki
 ## Updating
 
 **Upgrading to 0.8.** Token-mode servers now need `MAILMCP_INVITE_CODE` (at least 8 characters), or `MAILMCP_OPEN_SIGNUP=1` for a deliberately public server. Set one of the two before you deploy 0.8 (Vercel: Settings → Environment Variables → Production, then redeploy), otherwise `/setup` stops issuing tokens and shows a notice for you. Tokens already issued keep working either way; the full list is in `CHANGELOG.md` under 0.8.0. 0.8 also adds Outlook and Microsoft 365 mailboxes through a Microsoft sign-in; nothing has to be configured for that unless you want your own Entra registration or the kill switches above.
+
+**Upgrading to 0.13.** Nothing has to be configured. Server copies now send the daily usage statistics described above unless you set `MAILMCP_NO_STATS=1`. Existing tokens keep protection Off until you pick a level on the setup page and replace the token in every assistant. In ChatGPT, refresh the connector (Settings → Connectors → mailmcp → Refresh) to see the new tools; in Claude Desktop, install the new `mailmcp.mcpb`. IMAP servers that support neither MOVE nor UIDPLUS now refuse moves instead of risking other messages. The full list is in `CHANGELOG.md` under 0.13.0.
 
 Releases are tagged here and listed in [`CHANGELOG.md`](CHANGELOG.md). If you deployed with the Vercel button, Vercel created your own copy of this repository: pull the new tag into it (`git pull https://github.com/kojott/mailmcp-dist.git main` and push), and Vercel deploys the push. Docker and Node: pull, rebuild or restart. To roll back, deploy the previous tag. Your tokens keep working across versions as long as `MAILMCP_KEY` stays the same.
 
@@ -145,4 +164,4 @@ The licence agreement is in [`LICENSE`](LICENSE) (English translation first, the
 
 Guide for people: [mailmcp.ai/docs](https://mailmcp.ai/docs). Guide for assistants, paste the link into ChatGPT or Claude and let it walk you through: [mailmcp.ai/llms.txt](https://mailmcp.ai/llms.txt). Support: [jiridolejs.cz/kontakt](https://jiridolejs.cz/kontakt).
 
-<sub>Version 0.9.0. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>
+<sub>Version 0.13.0. Made in Prague by <a href="https://jiridolejs.cz">Jiří Dolejš</a>.</sub>

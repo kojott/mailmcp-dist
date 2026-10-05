@@ -1,7 +1,7 @@
 mailmcp — END USER LICENSE AGREEMENT (EULA)
 mailmcp — LICENČNÍ SMLOUVA S KONCOVÝM UŽIVATELEM
 
-Version 1.1 of 29 September 2026.
+Version 1.2 of 29 September 2026.
 Licensor: Swinging Dogs s.r.o., company ID (IČO) 24825671, VAT ID CZ24825671,
 registered office Za Mototechnou 939/23, Stodůlky, 155 00 Prague 5, Czech
 Republic, entered in the Commercial Register kept by the Municipal Court in
@@ -153,13 +153,27 @@ Introduction
        is used.
 
 7. Updates
-   The licence includes free updates within the same major version number.
-   For example, a licence purchased for version 1.x includes 1.x updates but
-   need not include version 2.0. A licence purchased for version 0.x
-   includes 0.x updates. An upgrade to a new major version may carry a fee;
-   the Licensee may continue to use the versions the licence covers. This
-   does not affect updates the Licensor is required to provide under
-   mandatory law.
+   7.1 The licence includes free updates within the same major version
+       number. For example, a licence purchased for version 1.x includes 1.x
+       updates but need not include version 2.0. A licence purchased for
+       version 0.x includes 0.x updates. An upgrade to a new major version
+       may carry a fee; the Licensee may continue to use the versions the
+       licence covers. This does not affect updates the Licensor is
+       required to provide under mandatory law.
+   7.2 Update check and usage statistics. Once a day (desktop
+       installations at each start) the Software asks the Licensor's
+       server whether a newer version exists. Server installations
+       additionally send usage statistics unless switched off; desktop
+       installations send them, at most once a day, only if the Licensee
+       turns them on. The statistics consist of the version, the runtime and a number
+       that stays the same for one calendar month and is derived from
+       values that remain on the Licensee's systems. The Software sends no
+       Licence Key, configuration, mailbox data, message content or other
+       personal data. The Licensor publishes what is collected and the
+       aggregate results at https://mailmcp.ai/stats. The Licensee may
+       switch the statistics off (`MAILMCP_NO_STATS=1`) and the whole call
+       off (`MAILMCP_NO_UPDATE_CHECK=1`; in Claude Desktop the "Check for
+       updates" setting) without any effect on the licence.
 
 8. Refunds
    8.1 Within 14 days of each new purchase the Licensor refunds the full
@@ -246,7 +260,7 @@ Introduction
 ČESKY (rozhodný originál)
 ──────────────────────────────────────────────────────────────────────────
 
-Verze 1.1 ze dne 29. 9. 2026.
+Verze 1.2 ze dne 29. 9. 2026.
 Česká verze je rozhodná; anglický text výše je překlad.
 Poskytovatel: Swinging Dogs s.r.o., IČO 24825671, DIČ CZ24825671, se sídlem
 Za Mototechnou 939/23, Stodůlky, 155 00 Praha 5, zapsaná v obchodním
@@ -382,13 +396,28 @@ e-mail info@swingingdogs.com (dále „Poskytovatel“).
        Free; při užití placené Úrovně se podpis nevyžaduje.
 
 7. Aktualizace
-   Licence zahrnuje bezplatné aktualizace v rámci stejného hlavního čísla
-   verze. Například licence zakoupená pro verzi 1.x zahrnuje aktualizace
-   1.x, ale nemusí zahrnovat verzi 2.0. Licence zakoupená pro verzi 0.x
-   zahrnuje aktualizace 0.x. Přechod na novou hlavní verzi může být
-   zpoplatněn; verze, na které se licence vztahuje, smí Nabyvatel užívat
-   i nadále. Tím nejsou dotčeny aktualizace, které je Poskytovatel povinen
-   poskytnout podle kogentních právních předpisů.
+   7.1 Licence zahrnuje bezplatné aktualizace v rámci stejného hlavního
+       čísla verze. Například licence zakoupená pro verzi 1.x zahrnuje
+       aktualizace 1.x, ale nemusí zahrnovat verzi 2.0. Licence zakoupená
+       pro verzi 0.x zahrnuje aktualizace 0.x. Přechod na novou hlavní verzi
+       může být zpoplatněn; verze, na které se licence vztahuje, smí
+       Nabyvatel užívat i nadále. Tím nejsou dotčeny aktualizace, které je
+       Poskytovatel povinen poskytnout podle kogentních právních předpisů.
+   7.2 Kontrola aktualizací a statistika užívání. Software se jednou denně
+       (desktopové instalace při každém spuštění) zeptá serveru
+       Poskytovatele, zda existuje novější verze. Serverové instalace navíc
+       odesílají statistiku užívání, pokud není vypnuta; desktopové
+       instalace ji odesílají, nejvýše jednou denně, jen pokud ji Nabyvatel
+       zapne.
+       Statistika se skládá z verze, způsobu provozu a čísla, které zůstává
+       stejné po jeden kalendářní měsíc a je odvozeno z hodnot, které
+       zůstávají v systémech Nabyvatele. Software neodesílá Licenční klíč,
+       konfiguraci, údaje o schránkách, obsah zpráv ani jiné osobní údaje.
+       Co se sbírá a souhrnné výsledky Poskytovatel zveřejňuje na
+       https://mailmcp.ai/stats. Nabyvatel může statistiku vypnout
+       (`MAILMCP_NO_STATS=1`) a celé volání vypnout
+       (`MAILMCP_NO_UPDATE_CHECK=1`; v Claude Desktop volbou „Check for
+       updates“), aniž by to mělo vliv na licenci.
 
 8. Vrácení peněz
    8.1 Do 14 dnů od každého nového nákupu vrátí Poskytovatel Nabyvateli

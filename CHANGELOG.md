@@ -1,5 +1,111 @@
 # Changelog
 
+## 0.13.0 (2026-10-05)
+
+The first release since 0.9.0. It brings together the work built as 0.9.1 (usage statistics), 0.10 (triage and bulk clean-up), 0.11 (follow-ups, snooze, templates, confirmed sends, unsubscribe), 0.12 (the clickable inbox) and 0.13 (protection levels for verification emails); none of those was released on its own. Tools: 21 → 33.
+
+### Before you upgrade (self-hosted operators)
+
+Behaviour changes:
+
+- **Usage statistics, on by default on servers.** Every server copy (Vercel production, Docker, Node) now sends one small request a day to mailmcp.ai: `{"s":1,"v":"0.13","r":"docker","d":"…"}` (schema, version as major.minor, runtime, and a number that stays the same for a calendar month, computed from values that never leave your server). The answer tells your copy whether a newer version exists. No licence key, configuration, mailbox, address or content is sent. Turn it off with `MAILMCP_NO_STATS=1` (or `MAILMCP_STATS=0`, or `DO_NOT_TRACK=1`); the content-less update check stays. `MAILMCP_NO_UPDATE_CHECK=1` sends nothing to mailmcp.ai at all. Every copy logs one line at start saying whether statistics are ON or OFF. Details and the public totals: https://mailmcp.ai/stats.
+- **Claude Desktop and other desktop (stdio) copies: statistics are off** unless you tick Settings → Extensions → mailmcp → **Anonymous usage statistics** (or set `MAILMCP_STATS=1`). The update check now asks mailmcp.ai instead of GitHub, at each start; untick **Check for updates** to send nothing at all.
+- **Protection levels: existing tokens and configurations stay Off.** A configuration without a level behaves as before and `list_accounts` reports it as `set: false`. New mailboxes on /setup start at **Standard**. To turn protection on for a token: load it with its edit password on /setup, pick a level, save (Generate my token), then replace the token in every assistant (ChatGPT and claude.ai: remove the connector and add it again; other clients: put the new token in place of the old one). The old token stays valid and keeps the old level, and OAuth sign-ins last up to 90 days, so saving alone changes nothing for an assistant that still holds the old token. Then check `list_accounts`: `protection` must show the new level. A token without an edit password cannot be loaded: build a new one and replace the old one the same way. Configurations you write yourself (owner mode, a plain-text file, Docker, Claude Desktop): add `"protection": "standard"` (or `off`, `basic`, `strict`, or `{ "level": "custom", "categories": [...] }`) to each mailbox's `capabilities`, then restart or redeploy. There is no server-wide minimum level.
+- **Panels switch.** The clickable inbox (MCP Apps) shows on `triage`, `digest`, `create_draft`, `reply_draft` and `bulk_preview` in apps that support it. Turn it off per token on /setup ("Panels in the app (Claude, ChatGPT)", then replace the token), with `policy.ui: "off"` in a configuration you write yourself, with `MAILMCP_UI=off` over stdio, or in Claude Desktop with the extension setting "Panels in Claude".
+- **IMAP servers that support neither MOVE nor UIDPLUS now refuse archive, trash and move** (single and bulk), with a message saying to move the mail in the mail client. Before, a move on such a server could expunge other messages marked deleted in the same folder. Marking read, flags and Gmail labels are unaffected. Volný.cz and iCloud advertise neither capability before login; their post-login capabilities were not verified, so moves may be refused there.
+- Moves and labels to Junk/Spam need the `delete` capability, like Trash.
+- **Host-only sending is stored so that older servers refuse to send:** a mailbox set to "only after I confirm in my app's dialog" is written as `send: false` plus `send_host_only: true`; an older server or a rollback refuses to send from it instead of sending without the dialog.
+- mailmcp keeps records in the owner's own mailbox (folders `mailmcp-state`, `mailmcp-snoozed`, `mailmcp-templates`), never on the server. New configurations get `policy.state_secret` (it signs those records; when absent it is derived from the key that decrypts the configuration) and `policy.timezone` from /setup. Plaintext configurations without any key (`MAILMCP_CONFIG_FILE` in development) cannot set follow-ups or snoozes or save templates: set `MAILMCP_KEY` or add `state_secret` to the policy.
+- On mailmcp.ai, an expired subscription token with more mailboxes than Free allows now signs in in recovery mode: all its mailboxes are listed, and only clearing, waking and listing run until it is renewed.
+- Licence agreement 1.2 (29 September 2026) adds clause 7.2 on the update check and statistics.
+
+New optional environment variables (nothing new is required: no new service, no new runtime dependency):
+
+- `MAILMCP_NO_STATS`, `MAILMCP_STATS`, `DO_NOT_TRACK` (statistics switches, accepting `1`, `true`, `yes`, `on` and, for `MAILMCP_STATS`, `0`, `false`, `no`, `off`); `MAILMCP_NO_UPDATE_CHECK` now means "no request to mailmcp.ai at all".
+- `MAILMCP_UI=off` (stdio: no panels).
+- `MAILMCP_ELICITATION_HOSTS`: apps proven to show the confirmation dialog (the built-in list ships empty).
+- For ChatGPT to render the panels under your own origin, serve HTTPS and set `MAILMCP_PUBLIC_URL`, or run behind a trusted proxy (`MAILMCP_TRUST_PROXY=1`; Vercel counts as one). Without a trustworthy HTTPS origin the server advertises none and the text tools are unaffected.
+
+Clients:
+
+- **ChatGPT:** Settings → Connectors → mailmcp → **Refresh** (or remove and add it again). The tool list, the `bulk_apply` input and many tool descriptions changed, and ChatGPT keeps a snapshot of the old ones.
+- **Claude Desktop:** reinstall `mailmcp.mcpb` to get the new tools, the panels and the new settings; the old extension keeps working.
+
+### Rolling back to 0.9
+
+- The protection level and the panels switch are ignored: 0.9 shows every message again, including verification emails. The fields stay in the configuration, so upgrading again brings them back.
+- Gmail All Mail and Outlook whole-mailbox searches then show mailmcp's records and templates (bodies stay wrapped as untrusted data); snoozed mail stays in `mailmcp-snoozed` until you move it back in your mail client.
+- Mailboxes set to send only after the app's dialog cannot send at all under 0.9 (by design).
+- No statistics are sent; the Claude Desktop build asks GitHub for the latest release again.
+
+### Fixed (bugs in 0.9.0)
+
+- **Outlook / Microsoft 365: download and upload links failed with 502.** A `/files` or `/upload` link carries the encrypted token, 4 to 8 KB with an Outlook mailbox, and Vercel refuses a URL path over about 2 KB. Links are now `/files?r=…` and `/upload/?r=…`; the old path forms still work.
+- **Gmail: archiving from INBOX did nothing** while reporting done (Gmail keeps a folder's own label when it is removed in that folder). Archive and label removal now act in All Mail and read the result back; bulk archive, `modify_message` and undo follow the message there.
+- **`/pricing` said VAT is added at checkout for Personal (€19).** Personal and the mailmcp.ai subscription are priced including VAT; only Unlimited (€149) is shown without VAT, which checkout adds.
+- `/files` answers a refusal by the mailbox with 422 and its reason instead of 502.
+- Outlook / Microsoft 365: a folder with more than ten subfolders listed only ten of them, so a subfolder past the tenth was "Unknown folder".
+- Safety: IMAP moves go only through UID MOVE, or UID COPY + a verified copy + `\Deleted` + UID EXPUNGE of exactly those messages; a plain EXPUNGE is never sent. `send_draft` removes only the sent draft, or leaves it in Drafts and says so when the server has no UIDPLUS or the Sent copy failed. Replacing the signature removes only signatures mailmcp stored itself. Consumed uploads are removed message by message. Outlook `send_draft` refuses a draft whose recipients or revision changed after the allowlist check. Outlook's Recoverable Items is refused as a destination. Flag, label and move changes check that the message is really there first (a stale IMAP session answered OK and changed nothing).
+
+### New: protection levels for verification emails
+
+- A per-mailbox level: Off, Basic (one-time codes, sign-in links, password and account recovery), Standard (Basic plus security alerts; the default for new mailboxes on /setup), Strict (Standard plus bank and payment mail) and Custom (ticked categories). Set only on the setup page or in the owner's configuration; no tool argument can change or widen it.
+- The mailmcp server decides with fixed English and Czech rules, headers first and then the body on every path that returns or sends a body. It catches typical verification emails, not every possible one. Meeting passcodes stay visible. Booking, order, customer, access and error codes are not verification codes; amounts with decimals are never codes; mail from a person rather than a service is never hidden whole because of its body (its codes are removed from Standard up).
+- Hidden mail is left out of searches, listings, triage, digests and follow-up lists; opening, forwarding, attaching, downloading, moving or trashing it by id is refused. Every search on a protected mailbox carries one constant protection line; plain listings and scans report `hidden_by_protection`, a count, never which messages.
+- From Standard up, codes and sign-in links in other mail become `[code removed]` and `[sign-in link removed]`, text searches leave out mail that contains them, and the bytes of such mail cannot leave through `forward_message`, attachments or download links.
+- At a hiding level a text search reads message bodies and readable attachments (text files, PDFs within the extractor's bounds, attached mail) and keeps a message only when its match is in analysed text; it pages up to offset 100, runs within a 30-second slice and returns `total_exact: false` when it stops early. A text search with a negation, a wildcard or an attachment or file-name operator leaves out mail with attachments. On Gmail, queries made only of `is:`, `in:`, `label:`, `category:`, date and size operators are listings and read no bodies. The ChatGPT `search` tool carries the protection line as `notice`.
+- A code for signing in counts as a code whatever else qualifies it. A bank's own confirmations are banking, hidden only at Strict; a bank's code mail is a code at every hiding level. Attachment names are classified like subjects; an attachment is classified by the stricter of its declared type, its file name and its first bytes.
+- `list_accounts` and `mailmcp://accounts` report `protection: { level, set, hides, redacts, rules }` per mailbox. The panels show "Hidden by the protection level: {n}", and a draft card whose draft contains a code or sign-in link the level hides does not send ("Send it from your mail app").
+
+### New tools (21 → 33)
+
+- `triage`: sorts recent mail into reply_candidates, waiting_on, newsletter, lists, calendar, automated and other from headers only, with the reasons and the coverage. Up to four mailboxes in parallel with `account: "all"`.
+- `awaiting_replies`: threads where the owner wrote last and no reply was found.
+- `digest`: what arrived since the last run, with a per-mailbox coverage cursor; without a cursor the last 24 hours.
+- `bulk_preview` (read-only) and `bulk_apply`: archive, mark_read, label, move or trash many messages at once. The preview lists the exact messages and changes nothing; `bulk_apply` takes the preview's confirmation together with its action, mailbox and count and acts on exactly those messages, fewer if some changed. Free acts on 50 per call, paid plans on 500. Nothing is deleted. `bulk_preview batch=` shows what an applied batch did; `bulk_apply batch= undo=true` puts a batch back on paid plans within 7 days.
+- `set_followup` and `list_followups`: a follow-up by a date, recorded in `mailmcp-state` and shown as a star, flag, label or category; due follow-ups across mailboxes, including flags set in Outlook itself. Setting is paid, clearing free.
+- `snooze` and `wake_snoozed`: moves one message into `mailmcp-snoozed` until a time and brings it back where it was, unread. Snoozing is paid, cancelling and waking free.
+- `save_template` and `list_templates`: text templates and a tone-only style profile in `mailmcp-templates`; `create_draft` and `reply_draft` take `template` and `vars`. Templates are paid, the profile free.
+- `unsubscribe`: a dry run says whether mailmcp may send the RFC 8058 one-click request (only when the provider verified a DKIM signature covering both unsubscribe headers and the link is on the signer's own domain). Needs the `unsubscribe` capability, off by default.
+
+### New: the clickable inbox (MCP Apps)
+
+- One built-in page, `ui://mailmcp/app.html`, rendered by the host in its sandbox on `triage`, `digest`, `create_draft`, `reply_draft` and `bulk_preview`: an inbox list and a triage board, bulk previews and results, and a draft card. Czech and English, light and dark, usable at 360 px and by keyboard. `search_messages`, `get_thread`, `bulk_apply` and `unsubscribe` answer as text only.
+- The draft card shows the sending mailbox, every recipient including Bcc, every attachment, the owner's own text, and which message a reply quotes or a forward forwards. Send takes two clicks: the first re-reads the draft and arms only if nothing changed; the second calls `send_draft` with that draft's fingerprint. Send stays off when the server would refuse it, when the draft was already sent (`already_sent`), when mailmcp has no record that lets the card show the owner's own text (`unreviewable`), and when the draft has HTML mailmcp did not generate (`html_differs`).
+- The card is not a confirmation: every button is an ordinary tool call the server checks like the model's own. Only a mailbox set to send after the app's dialog (`send_host_only`) makes a send wait for the owner.
+- The page loads nothing from the internet (empty CSP lists, mail as plain text only). It goes out gzip-compressed over `/mcp` when the app accepts it (about 140 KB instead of 650 KB).
+
+### Changed
+
+- `create_draft` and `reply_draft` return a fingerprint of the stored draft; `send_draft` takes `expect_fingerprint` and refuses a draft that changed since it was shown, and refuses a draft that was already sent.
+- Confirmations in the app's own dialog (mode B) on apps known to show a confirmation form: sends, confirmed bulk actions, undo and unsubscribe first ask the owner there, with every recipient listed.
+- Draft provenance is a record in `mailmcp-state`, never a header: mailmcp adds no header to mail it sends, and every send path strips `X-Mailmcp-*` headers.
+- `search_messages` results carry header-based `hints`; `get_thread` searches across folders, reports `coverage` and returns bodies with `include_bodies`. Output schemas on the read tools; prompts `inbox_zero`, `daily_digest`, `follow_ups` ("Who owes me a reply"), `draft_replies`, `scheduled_recipes`.
+- Shorter tool descriptions and argument texts (same rules, fewer words) keep the tool list within its context budget with twelve more tools.
+
+### New: usage statistics on mailmcp.ai
+
+- `/stats` shows what a copy sends (the exact request, a sample you can run that is never counted), when it is on, the switches, what is stored and for how long (hashed values until counted, at most 48 hours / 40 days; daily totals 400 days, monthly totals 25 months), the Redis commands verbatim, and the numbers: running copies per day and per month by version and runtime (rounded to 5). Copies of 0.13.0 and later only. Docker and Node send at a random time of day, Vercel on the first request of a day, Claude Desktop at start; nothing is sent between 23:50 and 00:10 UTC. A copy without a machine id writes a random salt once to `~/.mailmcp/stats-salt` and keeps the day of its last ping in `~/.mailmcp/stats-sent-*`; neither file is ever sent. The request has a 2-second timeout and never delays or breaks anything.
+- MCP requests on mailmcp.ai are counted in Vercel Web Analytics by method (`initialize`, `tools/list`, `tools/call`; `server/discover` is not counted), tool, client family and outcome, with the time rounded to the hour; no IP address, cookie, client user agent, token or content. None of this exists in your own copy.
+- Rulings for the receiver on mailmcp.ai: Upstash Redis free plan in Frankfurt (eu-central-1), no pay-as-you-go; a daily write budget of 860 accepted pings (`MAILMCP_STATS_DAILY_BUDGET`; the conservative figure that keeps a month under the free plan's 400,000 commands if Upstash bills each command inside the script); pings over the budget are answered and not counted, and `/stats` marks the day "capped".
+
+### Not in this release
+
+- In-card editing (`revise_draft`) and `respond_invite` are deferred. `schedule_send` is dropped: Microsoft 365 cannot cancel a deferred send.
+
+### Known limitations
+
+- Pictures and office files attached to visible mail are not scanned for codes. Bulk clean-up can move a message whose body is hidden (never delete it). Confusable characters outside the fold map are not caught. Download links remain bearer links for one hour.
+- A sender can make their own mail disappear from the assistant (a fake "Security alert" is hidden, so the assistant cannot warn about it). Listings bisected by date reveal when hidden mail arrived, never its content.
+
+### Pages
+
+- `/docs` (Czech and English): the new tools and recipes, bulk clean-up, approvals, follow-ups and snooze, "What mailmcp keeps in your mailbox" and how to remove it, unsubscribing, the clickable inbox, "Verification emails and protection levels", and what the server sends where. `/llms.txt` and `/llms-full.txt` follow. `/privacy`: what lives in your mailbox, the update check and statistics with Upstash as processor, classification in memory. `/terms`, `/pricing`, `/security`, `/start` and the READMEs follow. Audit addenda 14 to 18.
+
+### Build
+
+- The distribution and the Claude Desktop extension contain the statistics sender only: the build fails if a vendor-only module (receiver, `/stats`, MCP counting) slips into a bundle, if the extension's statistics setting is not off by default, or if the Dockerfile lacks `MAILMCP_RUNTIME=docker`.
+
 ## 0.9.0 (2026-09-29)
 
 ### Before you upgrade (self-hosted operators)
@@ -7,7 +113,7 @@
 - Every server that issues user tokens without a licence key (free tier) now enforces **10 sends per hour per mailbox** itself. This is not limited to mailmcp.ai: your own copy running Free in token mode (the one-click Vercel deploy without `MAILMCP_LICENSE`) gets the same ceiling. It applies to tokens already issued: a token whose configuration sets a higher `policy.send_rate_per_hour` is clamped to 10 from the first request after the update, without being re-created; the refusal reads "Send rate limit reached (10/hour, free tier ceiling)". Servers with a Personal or Unlimited key are unchanged: the configuration's rate applies. Owner mode and Claude Desktop (`.mcpb`) keep the configured rate.
 - mailmcp.ai subscription keys do not license your own server: `MAILMCP_LICENSE` refuses them and `/setup` on your server has no field for them. Buy Personal or Unlimited for your own server.
 
-- Licence agreement 1.1 (draft pending the owner's approval): Swinging Dogs s.r.o. is the licensor; Personal is one Running Installation for one user whoever owns the mailboxes, Unlimited one organization and its employees; serving other people's mailboxes or running mailmcp as a hosted service needs a separate agreement; the software ships as the built package only; licences are sold through Stripe as merchant of record; the 14-day refund covers each new purchase (not renewals); updates within the same major version; a material breach gets 14 days to cure; consumer rights are carved out clause by clause. The mailmcp.ai subscription is governed by https://mailmcp.ai/terms, not by the EULA.
+- Licence agreement 1.1 (29 September 2026): Swinging Dogs s.r.o. is the licensor; Personal is one Running Installation for one user whoever owns the mailboxes, Unlimited one organization and its employees; serving other people's mailboxes or running mailmcp as a hosted service needs a separate agreement; the software ships as the built package only; licences are sold through Stripe as merchant of record; the 14-day refund covers each new purchase (not renewals); updates within the same major version; a material breach gets 14 days to cure; consumer rights are carved out clause by clause. The mailmcp.ai subscription is governed by https://mailmcp.ai/terms, not by the EULA.
 
 - Terms of service rewritten (Czech binding): operator identity, Stripe as merchant of record, subscription seats, renewals and refunds per new purchase, suspension and termination, consumer carve-outs, how changes are announced; the privacy policy now lists the technical logs and in-memory data the server keeps.
 
