@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.2 (2026-10-06)
+
+- `set_followup` and `snooze` are now marked `destructiveHint: true` (OpenAI plugin scan): snooze moves the message out of the Inbox and set_followup can replace or clear an earlier follow-up. Nothing is deleted; behaviour is unchanged.
+- **ChatGPT:** Settings → Connectors → mailmcp → Refresh to load the updated tool hints.
+
 ## 0.13.1 (2026-10-05)
 
 - `unsubscribe` is now marked `destructiveHint: true`: an executed unsubscribe cannot be undone from mailmcp, so assistants ask before running it. The default dry run is unchanged and changes nothing.
