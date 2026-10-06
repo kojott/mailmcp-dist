@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.3 (2026-10-06)
+
+- `get_attachment` no longer advertises `save_to` on HTTP deployments (OpenAI plugin scan): it only ever worked over stdio, and a `save_to` sent to an HTTP server is still refused. Claude Desktop / Claude Code keep it.
+
 ## 0.13.2 (2026-10-06)
 
 - `set_followup` and `snooze` are now marked `destructiveHint: true` (OpenAI plugin scan): snooze moves the message out of the Inbox and set_followup can replace or clear an earlier follow-up. Nothing is deleted; behaviour is unchanged.
