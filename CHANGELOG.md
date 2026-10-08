@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.5 (2026-10-08)
+
+- New link-preview image (`/og.jpg`) in the new website's style: the red-envelope photo, “All your mail in ChatGPT and Claude. Not just Gmail.” and the mark.
+
 ## 0.13.4 (2026-10-08)
 
 - **New website.** The home page leads with the product: a clickable demo of the mailmcp card right under the headline, the first customers, a comparison with the built-in Gmail and Outlook connectors, the permission panel and the price. Photographs in a red-envelope series on the home, Connect, Pricing, For teams and Security pages.
