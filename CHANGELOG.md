@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.7 (2026-10-08)
+
+- For teams: the links in the data protection officer line (security overview, privacy policy, audit) now work; 0.13.6 rendered them as broken relative links.
+
 ## 0.13.6 (2026-10-08)
 
 - Pages now tell link previews who published them (`author`, Swinging Dogs s.r.o.) and when (`article:published_time`, the release date); LinkedIn showed both as missing.
