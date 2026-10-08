@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.6 (2026-10-08)
+
+- Pages now tell link previews who published them (`author`, Swinging Dogs s.r.o.) and when (`article:published_time`, the release date); LinkedIn showed both as missing.
+- `MAILMCP_FB_APP_ID` (optional, digits): adds `fb:app_id` to every page for Facebook link previews.
+- For teams: the line for your data protection officer now links the security overview, the privacy policy and the published internal audit instead of promising a prepared package.
+
 ## 0.13.5 (2026-10-08)
 
 - New link-preview image (`/og.jpg`) in the new website's style: the red-envelope photo, “All your mail in ChatGPT and Claude. Not just Gmail.” and the mark.
