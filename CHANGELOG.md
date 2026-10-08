@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.13.4 (2026-10-08)
+
+- **New website.** The home page leads with the product: a clickable demo of the mailmcp card right under the headline, the first customers, a comparison with the built-in Gmail and Outlook connectors, the permission panel and the price. Photographs in a red-envelope series on the home, Connect, Pricing, For teams and Security pages.
+- **/start rebuilt so nobody gets lost:** a three-step map, the install video, provider tabs that show only your provider's steps (Gmail, Seznam.cz, Outlook / Microsoft 365, iCloud, other), a clear "come back for step 3" after the token form, and a connection check at the end. ChatGPT steps now include installing the plugin and picking it with @; Claude steps follow the current Customize → Connectors flow. `/llms.txt` matches.
+- One navigation and footer for all pages: Connect, Pricing, For teams, Security, Guide; a one-row menu with a Menu button on phones; a footer in columns.
+- Copy corrections: the For teams and Security pages no longer claim that the admin can never see passwords, that nothing is ever stored or that mail content can never act as an instruction; they now describe what the server does and its limits.
+
 ## 0.13.3 (2026-10-06)
 
 - `get_attachment` no longer advertises `save_to` on HTTP deployments (OpenAI plugin scan): it only ever worked over stdio, and a `save_to` sent to an HTTP server is still refused. Claude Desktop / Claude Code keep it.
