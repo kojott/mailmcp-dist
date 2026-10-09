@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.9 (2026-10-09)
+
+- Home page hero: the two promises ("We don't read your email." "Nothing is sent without your permission.") now stand right under the call to action and link to the section that explains them.
+- Home page: the mailbox addresses in the first customer story no longer have doubled padding or a gap before the @.
+
 ## 0.13.8 (2026-10-09)
 
 - Home page: a new section states two promises plainly. We don't read your email (the server handles it in memory, stores no archive, index or copies), and nothing is sent without your permission (sending starts off, only you can switch it on per mailbox, then only to addresses you allow within an hourly limit).
