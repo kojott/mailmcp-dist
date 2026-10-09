@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.8 (2026-10-09)
+
+- Home page: a new section states two promises plainly. We don't read your email (the server handles it in memory, stores no archive, index or copies), and nothing is sent without your permission (sending starts off, only you can switch it on per mailbox, then only to addresses you allow within an hourly limit).
+- The refund line on the home page, in the price summary and in the "What does mailmcp cost?" answer now reads "Not satisfied? Full refund within 14 days of a new purchase." The terms are unchanged.
+- English home page: the customer stories use English names.
+
 ## 0.13.7 (2026-10-08)
 
 - For teams: the links in the data protection officer line (security overview, privacy policy, audit) now work; 0.13.6 rendered them as broken relative links.
