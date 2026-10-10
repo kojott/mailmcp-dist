@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.10 (2026-10-10)
+
+- Guide (`/docs`), mailmcp.ai subscription: a new part "Limits, and replacing your token" says what the limits apply to (mailboxes per token, sending per seat across tokens, one person with one token in use) and how to switch from an old token to a new one, including how to cut the old one off without changing your main mailbox passwords.
+- Guide, "I forgot my edit password": after building a new token, remove the old connector; the old token stays valid until its app passwords are deleted (or the Microsoft access is removed).
+- Pricing on mailmcp.ai: a new question "Can I have more than one token?". `/llms.txt` covers the same case for assistants.
+
 ## 0.13.9 (2026-10-09)
 
 - Home page hero: the two promises ("We don't read your email." "Nothing is sent without your permission.") now stand right under the call to action and link to the section that explains them.

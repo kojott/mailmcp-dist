@@ -1,4 +1,4 @@
-# mailmcp 0.13.9 — prebuilt distribution, no build step
+# mailmcp 0.13.10 — prebuilt distribution, no build step
 FROM node:22-alpine
 WORKDIR /app
 ENV NODE_ENV=production PORT=8080 MAILMCP_RUNTIME=docker
