@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.11 (2026-10-11)
+
+- Moving mail into a new folder: `modify_message` and `bulk_preview` take `create_folder: true` with `move_to` / `to_folder`, and the folder is created when it does not exist yet (IMAP, Gmail labels and Outlook; "Parent/Child" creates the child under an existing parent). `bulk_preview` still changes nothing: the folder is created by `bulk_apply`, after you agreed. Before, a move into a folder that did not exist failed on every IMAP mailbox except Gmail, with no way to create it.
+- A move into a folder that does not exist is refused before any flag or label changes, with a message that says how to create it. `modify_message` used to answer "folder missing or server refused".
+- A folder name without the server's namespace prefix or in another case (`reklamy` for `INBOX.reklamy`) now finds the existing folder. mailmcp never creates Trash, Junk/Spam or its own reserved folders this way.
+
 ## 0.13.10 (2026-10-10)
 
 - Guide (`/docs`), mailmcp.ai subscription: a new part "Limits, and replacing your token" says what the limits apply to (mailboxes per token, sending per seat across tokens, one person with one token in use) and how to switch from an old token to a new one, including how to cut the old one off without changing your main mailbox passwords.
