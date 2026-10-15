@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13.12 (2026-10-15)
+
+- Replies: the quoted original is now HTML paragraphs and line breaks instead of one block with `white-space:pre-wrap`, which Outlook for Windows ignores, so the quote no longer runs together into one paragraph there. Earlier quote levels of a plain-text original (`>` lines) become nested quote bars.
+- A plain-text signature (from the token or the mailbox) keeps its line breaks in Outlook too: `<br>` instead of `white-space:pre-wrap`.
+- Replies with your own `html`: the quote takes the font of that HTML (its first `font-family` and size) instead of the mail client's default font (Times New Roman in Outlook).
+- The quote holds up to 100,000 characters (was 20,000). When the original is longer, the quote ends with "[…]", and `reply_draft`, `reply_send`, `create_draft` and `send_message` with `in_reply_to_uid` answer `quote_truncated: true` with a sentence saying so. Before, the cut was silent. Gmail shows a long message as clipped ("View entire message") from about 100 KB of HTML; Outlook replies with large attachments reach the 3 MB Microsoft Graph limit sooner.
+- The quote is still the original's text, not its HTML: pictures inside the original and quote levels in HTML mail are not kept yet.
+
 ## 0.13.11 (2026-10-11)
 
 - Moving mail into a new folder: `modify_message` and `bulk_preview` take `create_folder: true` with `move_to` / `to_folder`, and the folder is created when it does not exist yet (IMAP, Gmail labels and Outlook; "Parent/Child" creates the child under an existing parent). `bulk_preview` still changes nothing: the folder is created by `bulk_apply`, after you agreed. Before, a move into a folder that did not exist failed on every IMAP mailbox except Gmail, with no way to create it.
