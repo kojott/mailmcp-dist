@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.1 (2026-10-25)
+
+- Comparison and MCP-server pages (`/gmail-mcp-server`, `/outlook-mcp-server`, `/vs/…`, `/alternatives/…`): every feature is listed as available, without the "new in 0.10/0.11/0.12" labels, and the lists now include protection levels and replies that quote the original.
+
 ## 0.14.0 (2026-10-25)
 
 - Replies quote the original's HTML: earlier quotes (nested), tables, bold and coloured text, the original's fonts and spacing (simple rules of its style block are applied to the quoted elements, so Outlook mail stays single-spaced), and its inline pictures, re-attached to the reply (up to 20, 2 MB each, 5 MB in all; 1.5 MB in all on Outlook). This is what `reply_draft`, `reply_send`, `create_draft` and `send_message` with `in_reply_to_uid` do now.
