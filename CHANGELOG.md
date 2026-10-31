@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.2 (2026-10-31)
+
+- mailmcp.ai: assistant requests are limited per user, at most 120 per minute on Free and 300 with the subscription (the pricing page lists them). Over the limit the server answers 429 with `Retry-After` and a message telling the assistant how long to wait and to make fewer, narrower calls. Normal work does not come close; the limit stops runaway agent loops (one ran at about 800 requests a minute). Servers you run yourself have no such limit, and Personal and Unlimited licences are unchanged.
+
 ## 0.14.1 (2026-10-25)
 
 - Comparison and MCP-server pages (`/gmail-mcp-server`, `/outlook-mcp-server`, `/vs/…`, `/alternatives/…`): every feature is listed as available, without the "new in 0.10/0.11/0.12" labels, and the lists now include protection levels and replies that quote the original.
