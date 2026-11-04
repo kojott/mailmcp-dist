@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0 (2026-11-03)
+
+- mailmcp's own folders (`mailmcp-signature`, `-uploads`, `-state`, `-templates`, `-snoozed`) now sit together in one place per mailbox: at the top level as before, or under one parent folder. Tencent Exmail, which keeps your own folders under `其他文件夹`, works without changes: once one mailmcp folder is there (for example your signature folder), the signature is found and the others are created next to it. Before, `get_signature` answered "not found" and `set_signature` failed there.
+- New optional setting on the setup page (Advanced, for "Other IMAP" accounts): the parent folder for mailmcp's folders, for servers that do not allow folders at the top level. Leave it empty unless a tool tells you the server did not create a folder. Setting it means a new token: replace the token in every assistant. mailmcp never moves anything: if its folders already exist elsewhere, move them into the parent folder first.
+- If mailmcp finds its folders in two places, it does not guess and says so; move the messages into one place in your mail client and delete the other folder. Folders shared by other users, and anything in Trash, Junk or All Mail, are never used.
+- The signature from your mailbox is the newest message in its folder that you sent from your own address, or your own copy of one (for example from Sent, which carries no delivery headers), or the one the assistant stored with `set_signature`. A message delivered from someone else into that folder is no longer used, nor one with your address as the sender that your mail server marked as forged (DMARC or SPF fail).
+- If mailmcp's folders are found in two places, drafts and sends still work, without the mailbox signature, until the folders are in one place.
+
 ## 0.14.2 (2026-10-31)
 
 - mailmcp.ai: assistant requests are limited per user, at most 120 per minute on Free and 300 with the subscription (the pricing page lists them). Over the limit the server answers 429 with `Retry-After` and a message telling the assistant how long to wait and to make fewer, narrower calls. Normal work does not come close; the limit stops runaway agent loops (one ran at about 800 requests a minute). Servers you run yourself have no such limit, and Personal and Unlimited licences are unchanged.
