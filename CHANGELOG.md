@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.16.0 (2026-11-20)
+
+- Ten mailboxes now fit in one token with the mailmcp.ai subscription, as promised. The setup page compresses your mailbox settings before it encrypts them, so a token is several times smaller: before, about five to eight mailboxes on your own mail server (custom IMAP), with signatures and the subscription key, filled the token's size limit. Work Microsoft 365 sign-ins are long and barely shrink: two of them plus eight other mailboxes fit, three do not, and the setup page says so before it creates the token.
+- Existing tokens keep working unchanged. To add mailboxes, load your token on the setup page (Edit, with your edit password), add them and generate the token again; then remove the connector in your assistant and add it again with the new token (the assistant keeps the old token until you do).
+- Settings you copy for your own server, Claude Desktop or `MAILMCP_CONFIG` are not compressed, so they still open on older versions.
+- **Do not downgrade a server below 0.16.0 after it has created tokens.** Older versions cannot read the new tokens, and their setup page cannot load them for editing. If you must go back, create the tokens again on the old version's setup page. Running several instances (Docker, a load balancer): update them all together, since an instance still on 0.15 rejects the new tokens.
+- An outdated browser without the compression the page needs (Safari before 16.4, Firefox before 113, both from spring 2023) still creates tokens, uncompressed as before, and the page says when a current browser would make the token fit.
+
 ## 0.15.0 (2026-11-03)
 
 - mailmcp's own folders (`mailmcp-signature`, `-uploads`, `-state`, `-templates`, `-snoozed`) now sit together in one place per mailbox: at the top level as before, or under one parent folder. Tencent Exmail, which keeps your own folders under `其他文件夹`, works without changes: once one mailmcp folder is there (for example your signature folder), the signature is found and the others are created next to it. Before, `get_signature` answered "not found" and `set_signature` failed there.
