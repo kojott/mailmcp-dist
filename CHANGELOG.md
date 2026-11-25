@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.1 (2026-11-25)
+
+- Signing in again from Codex and other apps that run on your computer works. Such an app listens for the sign-in on a new local port each time, while its registration (for Codex, the metadata document at chatgpt.com) names the local address without that port, and the server refused it ("redirect_uri is not registered for this client"). A local (loopback) address may now use any port, as the OAuth rules for native apps require; its path must still match exactly, and web addresses still have to match exactly.
+
 ## 0.16.0 (2026-11-20)
 
 - Ten mailboxes now fit in one token with the mailmcp.ai subscription, as promised. The setup page compresses your mailbox settings before it encrypts them, so a token is several times smaller: before, about five to eight mailboxes on your own mail server (custom IMAP), with signatures and the subscription key, filled the token's size limit. Work Microsoft 365 sign-ins are long and barely shrink: two of them plus eight other mailboxes fit, three do not, and the setup page says so before it creates the token.
